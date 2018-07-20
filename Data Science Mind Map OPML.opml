@@ -1,0 +1,2021 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+<head>
+<title>Mind Map 2</title>
+</head>
+<body>
+<outline text=""><outline text="Type"><outline text="Non-Linear" _note="Here, you cannot draw a line to separate the classes, so a linear classifier wont work. But you can draw a square which can be a good classifier.&#10;Now this square can be represented by a tree based algorithm easily, so it would perform better"></outline>
+<outline text="Linear" _note="Here, you can draw a line to differentiate between the data classes. So it can be solved easily by a lineaar classifier"></outline>
+</outline>
+</outline>
+<outline text="x" _note="Computer learning from experience i.e data"><outline text="Exploratory Analysis" _note="&quot;get to know&quot; the data.&#10;aim is to gain intuition about the data&#10;This step should be quick, efficient, and decisive.&#10;Doing so upfront will make the rest of the project much smoother, in 3 main ways:&#10;You’ll gain valuable hints for Data Cleaning (which can make or break your models).&#10;You’ll think of ideas for Feature Engineering (which can take your models from good to great).&#10;You’ll get a &quot;feel&quot; for the dataset, which will help you communicate results and deliver greater impact."><outline text="Basic information" _note="qualitative &quot;feel&quot;"><outline text="How many observations do I have?"></outline>
+<outline text="How many features?"><outline text="Do the columns make sense?"></outline>
+</outline>
+<outline text="What are the data types of my features? Are they numeric? Categorical?"><outline text="Do the values in those columns make sense?"></outline>
+<outline text="Are the values on the right scale?"></outline>
+<outline text="Is missing data going to be a big problem based on a quick eyeball test?"></outline>
+</outline>
+<outline text="Do I have a target variable?"></outline>
+</outline>
+<outline text="Distributions of numeric features" _note="At this point, you should start making notes about potential fixes you&apos;d like to make. If something looks out of place, such as a potential outlier in one of your features, now&apos;s a good time to ask the client/key stakeholder, or to dig a bit deeper.&#10;However, we&apos;ll wait until Data Cleaning to make fixes so that we can keep our steps organized."><outline text="quick and dirty grid of histograms" _note="enough to understand the distributions."></outline>
+<outline text="Unexpected distribution"></outline>
+<outline text="Potential outliers that don&apos;t make sense"></outline>
+<outline text="Features that should be binary (i.e. &quot;wannabe indicator variables&quot;)"></outline>
+<outline text="Boundaries that don&apos;t make sense"></outline>
+<outline text="Potential measurement errors"></outline>
+</outline>
+<outline text="Distributions of categorical features"><outline text="bar plots" _note="Categorical features cannot be visualized through histograms. Instead, you can use bar plots."></outline>
+<outline text="look out for sparse classes" _note="which are classes that have a very small number of observations.&#10;a &quot;class&quot; is simply a unique value for a categorical feature.&#10;For example, the following bar plot shows the distribution for a feature called &apos;exterior_walls&apos;. So Wood Siding, Brick, and Stucco are each classes for that feature.&#10;Anyway, back to sparse classes... as you can see, some of the classes for &apos;exterior_walls&apos; have very short bars. Those are sparse classes.&#10;Therefore, we recommend making a note to combine or reassign some of these classes later. We prefer saving this until Feature Engineering (Lesson 4)."><outline text="tend to be problematic when building models."></outline>
+<outline text="best case"><outline text="they don&apos;t influence the model much."></outline>
+</outline>
+<outline text="worse case"><outline text="can cause the model to be overfit"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Segmentations"><outline text="powerful ways to observe the relationship between categorical features and numeric features."></outline>
+<outline text="Box Plot"></outline>
+<outline text="Here are a few insights you could draw from the following chart."><outline text="The median transaction price (middle vertical bar in the box) for Single-Family homes was much higher than that for Apartments / Condos / Townhomes."></outline>
+<outline text="The min and max transaction prices are comparable between the two classes."></outline>
+<outline text="In fact, the round-number min ($200k) and max ($800k) suggest possible data truncation..."></outline>
+<outline text="...which is very important to remember when assessing the generalizability of your models later!"></outline>
+</outline>
+</outline>
+<outline text="Correlations"><outline text="How related is one vector to another?"><outline text="Positive correlation"><outline text="If one increases, the other increases." _note="E.g. a child’s age and her height."></outline>
+</outline>
+<outline text="Negative correlation"><outline text="If one increases, the other decreases." _note="E.g. hours spent studying and number of parties attended."></outline>
+</outline>
+</outline>
+<outline text="Correlation Co-effiecient"><outline text="a value between -1 and 1  that represents how closely two features move in unison"><outline text="Correlations near -1 or 1 indicate a strong relationship."></outline>
+<outline text="Those closer to 0 indicate a weak relationship"></outline>
+<outline text="0 indicates no relationship"></outline>
+</outline>
+<outline text="Tell you"><outline text="Direction of the trend"></outline>
+<outline text="Quality of straight line" _note="Plotting a line to fit strong relationship is easier than weak relationship"></outline>
+</outline>
+<outline text="What is does not tell you"><outline text="If your data is representative?" _note="If correlation exists in one set of sample it might not exist in another set."></outline>
+<outline text="Correlation != causation" _note="Other causes"></outline>
+</outline>
+<outline text="The Correlation Coefficient - Common Misconception"><outline text="If A and B are positively correlated, and B and C are positively correlated, does this make A and C positively correlated?"><outline text="no"></outline>
+<outline text="Not due to"><outline text="outliers"></outline>
+<outline text="Non-standard distribution"></outline>
+<outline text="Non-significance of individual correlation"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Three Steps:"><outline text="Fit’s straight line to the data"></outline>
+<outline text="Remember if the line points upwards + or downwards -"></outline>
+<outline text="“Quality of fit&quot;"><outline text="...so how big is it?"><outline text="More scatter along the y-axis than scatter along the fitted line"></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Correlation heatmaps" _note="Here&apos;s an example (note: all correlations were multiplied by 100):"></outline>
+<outline text="Look for ..."><outline text="Which features are strongly correlated with the target variable?"></outline>
+<outline text="Are there interesting or unexpected strong correlations between other features?"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Data Cleaning" _note="Then, clean your data to avoid many common pitfalls.&#10;Better data beats fancier algorithms.&#10;also called transformation"><outline text="Better data beats fancier algorithms" _note="if you have a properly cleaned dataset, even simple algorithms can learn impressive insights from the data!&#10;Obviously, different types of data will require different types of cleaning. However, the systematic approach laid out in this lesson can always serve as a good starting point."><outline text="Before cleaning: backup"></outline>
+</outline>
+<outline text="Is your data ready?"><outline text="Accurate"></outline>
+<outline text="Relevant"></outline>
+<outline text="Enough to work with"></outline>
+<outline text="Connected"></outline>
+</outline>
+<outline text="Unwanted observations"><outline text="Duplicate observations" _note="This town ain&apos;t big enough."><outline text="most frequently arise during data collection, when:"><outline text="Scrape data"></outline>
+<outline text="Combine datasets from multiple places"></outline>
+<outline text="Receive data from clients/other departments"></outline>
+</outline>
+</outline>
+<outline text="Irrelevant observations" _note="It just wasn&apos;t meant to be."><outline text="those that don’t actually fit the specific problem that you’re trying to solve." _note="This is also a great time to review your charts from Exploratory Analysis. You can look at the distribution charts for categorical features to see if there are any classes that shouldn’t be there.&#10;Checking for irrelevant observations before engineering features can save you many headaches down the road."></outline>
+</outline>
+</outline>
+<outline text="Structural errors"><outline text="arise during measurement, data transfer, or other types of &quot;poor housekeeping.&quot;" _note="For instance, you can check for typos or inconsistent capitalization."></outline>
+<outline text="For instance: typos or inconsistent capitalization." _note="&apos;composition&apos; is the same as &apos;Composition&apos;&#10;&apos;asphalt&apos; should be &apos;Asphalt&apos;&#10;&apos;shake-shingle&apos; should be &apos;Shake Shingle&apos;&#10;&apos;asphalt,shake-shingle&apos; could probably just be &apos;Shake Shingle&apos; as well"><outline text="mostly a concern for categorical features, and you can look at your bar plots to check."></outline>
+</outline>
+<outline text="mislabeled classes"><outline text="separate classes that should really be the same."></outline>
+<outline text="If ’N/A’ and ’Not Applicable’ appear as two separate classes, you should combine them."></outline>
+<outline text="e.g. ’IT’ and ’information_technology’ should be a single class."></outline>
+</outline>
+</outline>
+<outline text="Unwanted outliers" _note="He&apos;s got a point."><outline text="Outliers can cause problems with certain types of models. For example, linear regression models are less robust to outliers than decision tree models."></outline>
+<outline text="However, outliers are innocent until proven guilty. You should never remove an outlier just because it’s a &quot;big number.&quot; That big number could be very informative for your model."></outline>
+<outline text="In general, if you have a legitimate reason to remove an outlier, it will help your model’s performance."></outline>
+<outline text="We can’t stress this enough: you must have a good reason for removing an outlier, such as suspicious measurements that are unlikely to be real data."></outline>
+</outline>
+<outline text="Missing data"><outline text="you cannot simply ignore missing values in your dataset" _note="You must handle them in some way for the very practical reason that most algorithms do not accept missing values."><outline text="missingness is informative."></outline>
+</outline>
+<outline text="&quot;Common sense&quot; is not sensible here"></outline>
+<outline text="Dealing"><outline text="Partial Deletion" _note="limiting our data set for analysis to the data that we have available to us"><outline text="List-wise Deletion" _note="exclude a particular data point from all analyses even if some useful values were present"></outline>
+<outline text="Pairwise Deletion" _note="exclude a particular case from the analysis for tasks which are not possible with the data at hand"></outline>
+</outline>
+<outline text="Imputation" _note="make an intelligent guess at the missing values in our data"><outline text="Easy Imputation" _note="Fill with same value"><outline text="Fill with Mean"></outline>
+</outline>
+<outline text="Impute Using Linear Regression"></outline>
+</outline>
+</outline>
+<outline text="2 most commonly recommended ways of dealing with missing data actually suck."><outline text="Dropping observations that have missing values"><outline text="Plus, in the real world, you often need to make predictions on new data even if some of the features are missing!"></outline>
+<outline text="when you drop observations, you drop information."></outline>
+<outline text="The fact that the value was missing may be informative in itself"></outline>
+</outline>
+<outline text="Imputing the missing values based on other observations"><outline text="the value was originally missing but you filled it in, which always leads to a loss in information, no matter how sophisticated your imputation method is."></outline>
+<outline text="Again, &quot;missingness&quot; is almost always informative in itself, and you should tell your algorithm if a value was missing."></outline>
+<outline text="Even if you build a model to impute your values, you’re not adding any real information. You’re just reinforcing the patterns already provided by other features"></outline>
+</outline>
+</outline>
+<outline text="Missing categorical data"><outline text="simply label them as ’Missing’!"></outline>
+<outline text="This tells the algorithm that the value was missing."></outline>
+<outline text="This also gets around the technical requirement for no missing values."></outline>
+</outline>
+<outline text="Missing numeric data"><outline text="flag and fill the values"><outline text="allowing the algorithm to estimate the optimal constant for missingness, instead of just filling it in with the mean."></outline>
+</outline>
+<outline text="Flag the observation with an indicator variable of missingness"></outline>
+<outline text="Then, fill the original missing value with 0 just to meet the technical requirement of no missing values."></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Feature Engineering" _note="Next, help your algorithms &quot;focus&quot; on what&apos;s important by creating new features.&#10;creating new input features from your existing ones.&#10;data cleaning = subtraction&#10;feature engineering = addition.&#10;transformed your raw dataset into an analytical base table (ABT). We call it an &quot;ABT&quot; because it&apos;s what you&apos;ll be building your models on.&#10;Not all of the features you engineer need to be winners. In fact, you’ll often find that many of them don’t improve your model. That’s fine because one highly predictive feature makes up for 10 duds.&#10;The key is choosing machine learning algorithms that can automatically select the best features among many options (built-in feature selection)."><outline text="Reason"><outline text="isolate and highlight key information"></outline>
+<outline text="bring domain expertise"></outline>
+</outline>
+<outline text="What Makes a Good Feature?"><outline text="Informative"><outline text="Try to solve the problem yourself"></outline>
+<outline text="Figure out how many features you need to solve the problem"></outline>
+<outline text="Avoid useless data"></outline>
+</outline>
+<outline text="Independent"><outline text="Independent Features are the best"><outline text="Height in inch=Height in cm so remove it"></outline>
+</outline>
+<outline text="Avoid redundant features"><outline text="highly correlated features"></outline>
+</outline>
+</outline>
+<outline text="Simple"><outline text="Features should be easy to understand"><outline text="simpler relations are easy to learn"></outline>
+<outline text="Better"><outline text="Distance between cities in miles"></outline>
+</outline>
+<outline text="Bad"><outline text="Latitude and Longitudes"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Domain knowledge" _note="engineer informative features by tapping into your (or others’) expertise about the domain.&#10;let&apos;s say you remembered that the housing crisis occurred in the same timeframe&#10;you could create an indicator variable for transactions during that period&#10;binary variables&#10;&quot;indicate&quot; if an observation meets a certain condition&#10;&quot;domain knowledge&quot; is very broad and open-ended. chances for getting stuck is high"></outline>
+</outline>
+<outline text="Feature Selection"><outline text="Remove unused"><outline text="remove unused" _note="those that don’t make sense to pass into our machine learning algorithms"><outline text="ID columns"></outline>
+<outline text="Features that wouldn&apos;t be available at the time of prediction"></outline>
+<outline text="Other text descriptions"></outline>
+</outline>
+<outline text="Redundant features" _note="typically those that have been replaced by other features that you’ve added during feature engineering."></outline>
+</outline>
+<outline text="select best features"><outline text="getting rid of the stuff that does not matter"><outline text="it is noisy"></outline>
+<outline text="it causes overfitting"></outline>
+<outline text="it is strongly related (highly correlated) with a feature that is already present."></outline>
+<outline text="additional features slow down training and testing process."></outline>
+</outline>
+<outline text="Features != Information"></outline>
+<outline text="Univariate Feature Selection"><outline text="SelectPercentile"><outline text="selects the X% of features that are most powerful (where X is a parameter)"></outline>
+</outline>
+<outline text="SelectKBest"><outline text="selects the K features that are most powerful (where K is a parameter)"></outline>
+</outline>
+<outline text="TfIdfVectorizer"><outline text="max_df"><outline text="When building the vocabulary ignore terms that have a document frequency strictly higher than the given threshold (corpus-specific stop words). If float, the parameter represents a proportion of documents, integer absolute counts."></outline>
+</outline>
+</outline>
+<outline text="count vectorizer"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Adding new Features"><outline text="finding patterns"></outline>
+<outline text="Method"><outline text=""><outline text="Human Intuition"></outline>
+</outline>
+<outline text=""><outline text="Code up the new feature"></outline>
+</outline>
+<outline text=""><outline text="Visualize"></outline>
+</outline>
+<outline text=""><outline text="Repeat"></outline>
+</outline>
+</outline>
+<outline text="Interaction features" _note="we already had a feature called &apos;num_schools&apos;, i.e. the number of schools within 5 miles of a property.&#10;also had the feature &apos;median_school&apos;, i.e. the median quality score of those schools.&#10;important is having many school options, but only if they are good.&#10;feature &apos;school_score&apos; = &apos;num_schools&apos; x &apos;median_school&apos;"><outline text="combinations of two or more features." _note="products, sums, or differences between two features."></outline>
+<outline text="Could I combine this information in any way that might be even more useful?"></outline>
+</outline>
+</outline>
+<outline text="Feature Scaling / Normalisation"><outline text="Helps reach convergence faster"></outline>
+<outline text="Min-Max Scale" _note="class sklearn.preprocessing.MinMaxScaler(feature_range=(0, 1), copy=True)"><outline text="Defining Range"></outline>
+</outline>
+<outline text="Algorithms Impacted by Feature Scaling"><outline text="1 dimension is traded off using another"><outline text="K-Means Clustering"></outline>
+<outline text="SVM"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Sparsity and Binning"><outline text="Sparse classes" _note="causing models to be overfit&#10;As a rule of thumb, we recommend combining classes until each one has at least ~50 observations. As with any &quot;rule&quot; of thumb, use this as a guideline (not actually as a rule)."><outline text="an eyeball test is enough to decide if you want to group certain classes together"></outline>
+</outline>
+<outline text="Binning/discretization"><outline text="transforming numerical variables into categorical counterparts"><outline text="bin values for Age into categories such as 20-39, 40-59, and 60-79"></outline>
+</outline>
+<outline text="Numerical variables are usually discretized in the modeling methods based on frequency tables (e.g., decision trees)"></outline>
+<outline text="two types"><outline text="unsupervised"><outline text="not use the target (class) information"></outline>
+<outline text="best way of determining k is by looking at the histogram and try different intervals or groups"></outline>
+<outline text="Types"><outline text="Equal Width"><outline text="divides the data into k intervals of equal size"></outline>
+<outline text="w = (max-min)/k"></outline>
+<outline text="interval boundaries are"><outline text="min+w, min+2w, ... , min+(k-1)w"></outline>
+</outline>
+</outline>
+<outline text="Equal Frequency Binning"><outline text="divides the data into k groups which each group contains approximately same number of values"></outline>
+</outline>
+<outline text="Other Methods"><outline text="Rank"><outline text="rank of a number is its size relative to other values of a numerical variable"></outline>
+<outline text="First, we sort the list of values, then we assign the position of a value as its rank"></outline>
+<outline text="Same values receive the same rank but the presence of duplicate values affects the ranks of subsequent values (e.g., 1,2,3,3,5)"></outline>
+<outline text="solid binning method with one major drawback, values can have different ranks in different lists."></outline>
+</outline>
+<outline text="Quantiles"><outline text="(median, quartiles, percentiles, ...)"></outline>
+<outline text="but like Rank, one value can have different quantile if the list of values changes"></outline>
+</outline>
+<outline text="Math functions"><outline text="FLOOR(LOG(X)) is an effective binning method for the numerical variables with highly skewed distribution (e.g., income)."></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="supervised"><outline text="refer to the target (class) information when selecting discretization cut points."></outline>
+<outline text="Entropy-based Binning"><outline text="entropy (or the information content) is calculated based on the class label"></outline>
+<outline text="it finds the best split so that the bins are as pure as possible that is the majority of the values in a bin correspond to have the same class label"><outline text="finding the split with the maximal information gain."></outline>
+</outline>
+<outline text="Example"><outline text="Discretize the temperature variable using entropy-based binning algorithm."></outline>
+<outline text="Step 1: Calculate &quot;Entropy&quot; for the target."><outline text="E (Failure) = E(7, 17) = E(0.29, .71) = -0.29 x log2(0.29) - 0.71 x log2(0.71) = 0.871"></outline>
+</outline>
+<outline text="Step 2: Calculate &quot;Entropy&quot; for the target given a bin."><outline text="E (Failure,Temperature) = P(&lt;=60) x E(3,0) + P(&gt;60) x E(4,17) = 3/24 x 0 + 21/24 x 0.7= 0.615"></outline>
+</outline>
+<outline text="Step 3: Calculate &quot;Information Gain&quot; given a bin."><outline text="Information Gain (Failure, Temperature) = 0.256"></outline>
+</outline>
+<outline text="The information gains for all three bins show that the best interval for &quot;Temperature&quot; is (&lt;=60, &gt;60) because it returns the highest gain."></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="benefits"><outline text="may improve accuracy of the predictive models by reducing the noise or non-linearity."></outline>
+<outline text="allows easy identification of outliers, invalid and missing values of numerical variables."></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Feature Encoding"><outline text="Machine Learning algorithms perform Linear Algebra on Matrices, which means all features must be numeric. Encoding helps us do this."></outline>
+<outline text="Dummy Variables"><outline text="Most machine learning algorithms cannot directly handle categorical features"></outline>
+<outline text="Dummy variables are a set of binary (0 or 1) variables that each represent a single class from a categorical feature."></outline>
+</outline>
+<outline text="Label Encoding"><outline text="One Hot Encoding"><outline text="In One Hot Encoding, make sure the encodings are done in a way that all features are linearly independent."></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Algorithm Selection" _note="Choose the best, most appropriate algorithms without wasting your time.&#10;Most algorithms are fairly basic since they need to scale to large amounts of data."><outline text="Is this A or B?"><outline text="classification algorithms" _note="Categorical&#10;Example:&#10;Predict whether an individual is going to buy/click or not.&#10;Supervised Learning:&#10;Feedback on every move - label&#10;Predictive&#10;make branches until they reach &quot;leaves&quot; that represent predictions.&#10;train a large number of &quot;strong&quot; decision trees and combine their predictions through bagging.&#10;train a sequence of &quot;weak&quot;, constrained decision trees and combine their predictions through boosting.&#10;able to classify both linear and nonlinear data&#10;There’s no stick in the world that will let you split those balls well, so what do you do?&#10;work by transforming the training dataset into a higher dimension, a higher dimension which is then inspected for the optimal separation boundary, or boundaries, between classes.&#10;high value could mean that you might be overfitting&#10;sklearn.neighbors.KNeighborsClassifier¶&#10;probability of weither a point is a or b&#10;A specialized version of Naive Bayes that is designed more for text documents. Whereas simple naive Bayes would model a document as the presence and absence of particular words, multinomial naive bayes explicitly models the word counts and adjusts the underlying calculations to deal with in"></outline>
+</outline>
+<outline text="How much – or – How many?"><outline text="regression algorithms" _note="Prediction&#10;Quantitative&#10;Predict how much an individual is going to spend&#10;Supervised Learning:&#10;Feedback on every move - label&#10;Predictive&#10;regression is applied when the &quot;class&quot; to be predicted is made up of continuous numerical values&#10;also known as Ordinary Least Square (OLS) regression&#10;formally&#10;Least Absolute Shrinkage and Selection Operator&#10;Really Intense Dangerous Grapefruit Eating (just kidding... it&apos;s just ridge).&#10;compromise between Lasso and Ridge."></outline>
+</outline>
+<outline text="Is this weird?"><outline text="anomaly detection algorithms" _note="Un-supervised Learning&#10;Never get feedback - No Label&#10;Exploratory: Group similar individuals together"></outline>
+</outline>
+<outline text="How is this organised?"><outline text="can also serve as a useful data-preprocessing step to identify homogeneous groups on which to build supervised models."></outline>
+<outline text="clustering" _note="Divides data into groups (clusters or segments or partitions)&#10;Why do this?&#10;Some machine learning algorithm can take more time but dividing data into clusters can five meaningful insights&#10;The quality of a clustering result depends on the algorithm, the distance function, and the application."><outline text="For better understanding of data. Examples:"></outline>
+<outline text="Marketing/Sales. Know your customer."></outline>
+<outline text="Communicating information"></outline>
+<outline text="Biology, Climate, Medicine, etc."></outline>
+<outline text="For some Utility. Mainly as precursor to further Data Analysis."></outline>
+<outline text="Automatically organise data"></outline>
+<outline text="Types of Clustering"><outline text="Hierarchical versus Partitional"><outline text="Hierarchical (nested)"><outline text="Types:"><outline text="Divisive (Top-down)"></outline>
+<outline text="Agglomerative (Bottom-up)" _note="More popular"><outline text="Graphical representation through Dendrogram" _note="highests of nodes at combining shows degree of disimilarity&#10;when you take 2 cluster, take minimum distance between 2 data points to form cluster&#10;which points should I consider while making cluster so that there is maximum distance is small&#10;combination of every point to every other point and take average&#10;if target value is associated&#10;- Assume 𝑘 probability distributions with parameters 𝜃_1,𝜃_2,…,𝜃_𝑘&#10;Given data 𝑋, compute 𝜃_1,𝜃_2,…,𝜃_𝑘 such that&#10;𝑃𝑟(𝑋|𝜃_1,𝜃_2,…,𝜃_𝑘)      [likelihood] or&#10;ln_𝑃𝑟(𝑋|𝜃_1,𝜃_2,…,𝜃_𝑘) [log likelihood]&#10;is maximized.&#10;Every point 𝑥𝜖𝑋 may be generated by multiple distributions with some probability&#10;n = number of point in a cluster&#10;works well with text document&#10;points belonging to the cluster and sub of squared distance between points&#10;(for all clusters: for all objects within a cluster computer sum of distance from object to center/mean of cluster) find set of that clusters for which this quantity is minimized"></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Association"><outline text="Association Rule Mining"><outline text="Mining frequent patterns and rules"></outline>
+<outline text="Find association rules: condition dependencies"><outline text="Derive associations (A -&gt; B) from frequent patterns"></outline>
+</outline>
+<outline text="Find patterns in"><outline text="Sequences (time series data, fault analysis)"></outline>
+<outline text="Graphs (social network analysis)"></outline>
+<outline text="Transactions (market basket data)"></outline>
+</outline>
+<outline text="Mining Transaction"><outline text="Find frequent itemsets"></outline>
+<outline text="Transaction is a collection of items bought together" _note="Market-Basket Analysis"><outline text="A (sub)set of items is called an itemset"></outline>
+</outline>
+<outline text="Application"><outline text="Predicting co-occurrence"></outline>
+<outline text="Market Basket analysis"></outline>
+<outline text="Time series analysis!"><outline text="Trigger Events"></outline>
+</outline>
+</outline>
+<outline text="Itemset A -&gt; itemset B, if both A and A U B are" _note="frequent itemsets."></outline>
+</outline>
+</outline>
+<outline text="Multi Level"></outline>
+<outline text="Multi-Dimensional"></outline>
+<outline text="Algorithms"><outline text="Apriori"></outline>
+<outline text="PCY (Park Chen Yu)"></outline>
+<outline text="SON"></outline>
+</outline>
+</outline>
+<outline text="frequent pattern matching"><outline text="item sets, subsequences, or substructures that appear in a data set with frequency no less than a user-specified threshold."><outline text="For example, a set of items, such as milk and bread, that appear frequently together in a transaction data set, is a frequent itemset."></outline>
+<outline text="A subsequence, such as buying first a PC, then a digital camera, and then a memory card, if it occurs frequently in a shopping history database, is a (frequent) sequential pattern."></outline>
+</outline>
+<outline text="A substructure"><outline text="different structural forms, such as subgraphs, subtrees, or sublattices, which may be combined with item sets or subsequences."></outline>
+</outline>
+<outline text="If a substructure occurs frequently in a graph database, it is called a (frequent) structural pattern."><outline text="Finding frequent patterns plays an essential role in mining associations, correlations, and many other interesting relationships among data."></outline>
+</outline>
+<outline text="Moreover, it helps in data indexing, classification, clustering, and other data mining tasks as well. Frequent pattern mining is an important data mining task and a focused theme in data mining research."></outline>
+</outline>
+<outline text="latent/variable structure"><outline text=""><outline text="Topic Modelling"></outline>
+</outline>
+<outline text="Dimensionality Reduction"><outline text="Simplifies inputs by mapping them into a lower-dimensional space."></outline>
+<outline text="Principle Component Analysis (PCA)"><outline text="Principal component analysis (PCA) is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components. This transformation is defined in such a way that the first principal component has the largest possible variance (that is, accounts for as much of the variability in the data as possible), and each succeeding component in turn has the highest variance possible under the constraint that it is orthogonal to the preceding components."><outline text="Plot the variance per feature and select the features with the largest variance."></outline>
+</outline>
+</outline>
+<outline text="Singular Value Decomposition (SVD)"><outline text="SVD is a factorization of a real or complex matrix. It is the generalization of the eigendecomposition of a positive semidefinite normal matrix (for example, a symmetric matrix with positive eigenvalues) to any m×n matrix via an extension of the polar decomposition. It has many useful applications in signal processing and statistics."></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="What should I do next?"><outline text="reinforcement learning algorithms" _note="These algorithms learn from outcomes, and decide on the next action to maximize a reward.&#10;Feedback is not given only when it achieved the target.&#10;forced to learn these optimal goals by trial and error"><outline text="set of actions in an environment to get the highest scores"></outline>
+<outline text="Components"><outline text="Agent"><outline text="Learning/Decision making"></outline>
+</outline>
+<outline text="Environment"><outline text="What agent interacts with"></outline>
+</outline>
+<outline text="Action"><outline text="What agent can do?"></outline>
+</outline>
+</outline>
+<outline text="Learning without Data!"><outline text="When there is a cost associated with the data?"></outline>
+<outline text="We already saw designed experiments, active learning"></outline>
+<outline text="What if outcome stochastic?"><outline text="– When are we sure we know the outcome sufficiently well?"></outline>
+<outline text="– When are we sure we know the best possible choice given the circumstances?"></outline>
+<outline text="Stochastic Multi-choice problems"><outline text="Which is the right drug to treat a disease?"></outline>
+<outline text="Which is the right advertisement to show to a user?"></outline>
+<outline text="Which is the right scheme to sell to a customer?"></outline>
+<outline text="What is the right move in a game?"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Explore-Exploit Dilemma"><outline text="Explore to find profitable actions"></outline>
+<outline text="Exploit to act according to the best observations already made"></outline>
+</outline>
+<outline text="RE"><outline text="Policy Network"><outline text="Transforms input frames to output actions."></outline>
+</outline>
+<outline text="Policy Gradients"><outline text="Simplest method to train policy network"></outline>
+<outline text="Steps"><outline text="Initially"><outline text="Run the engine"></outline>
+<outline text="Produce random action"></outline>
+<outline text="Loop continously"></outline>
+</outline>
+<outline text="Sample from distribution to sometimes go randomly"></outline>
+<outline text="Reward Mechanism"><outline text="Good action - &gt; Give rewards"><outline text="Initially agent will lose"></outline>
+<outline text="but it might sometime make a whole series of actions that lead to a score"><outline text="agent receives a reward"></outline>
+</outline>
+</outline>
+<outline text="Else give penalty"></outline>
+</outline>
+<outline text="Agent will optimise policy to increase probability to get high rewards."><outline text="similarly reverse"></outline>
+</outline>
+</outline>
+<outline text="Problem"><outline text="Considers all the actions after getting penalty are bad actions even though most part of the actions were pretty good."><outline text="Credit Assignment Problem"><outline text="If you get a reward at the end of an episode what are the exact actions that lead to the reward"></outline>
+</outline>
+<outline text="Sparse reward setting"><outline text="we don&apos;t get feedback on every action"></outline>
+<outline text="but on a sequence of actions"></outline>
+<outline text="random exploration is almost impossible"></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Reward Shaping"><outline text="Manually resigning reward to guide the policy"></outline>
+<outline text="Custom process to be redone for every environment"></outline>
+<outline text="The Alignment Problem"><outline text="Agent will find a way to get reward but not doing what you actually want it to do."></outline>
+<outline text="aka overfitting the reward"></outline>
+</outline>
+<outline text="Sometimes you don&apos;t want to do reward shaping because it will restrict your policy"><outline text="like in case of alpha go"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="n-arm bandit problem"><outline text="learn to preferentially select a particular action (arm) from a set of n actions (1, 2, 3, . . . . , n)"></outline>
+<outline text="Each selection results in Rewards derived from the respective probability distribution"><outline text="when and how are we going to find the best arm?"><outline text="Identify the correct arm eventually"></outline>
+<outline text="Maximize the total rewards obtained" _note="while learning and eventually"><outline text="Minimize regret (= loss) while learning" _note="regret - how best you would have done if you already knew true solution from beginning?"></outline>
+</outline>
+<outline text="Probably Approximately Correct (PAC) frameworks"><outline text="Identification of an ε -optimal arm with probability 1 – δ" _note="ε - approximate"><outline text="ε -Optimal: Mean of the selected arm satisfies"></outline>
+</outline>
+</outline>
+<outline text="– Minimize sample complexity: Order of samples required for"></outline>
+<outline text="such an arm identification"></outline>
+</outline>
+</outline>
+<outline text="Arm i has a reward distribution with (u) mean and"></outline>
+<outline text="Uses"><outline text="Customisation"><outline text="Ad Selection"></outline>
+</outline>
+<outline text="Recommendation"></outline>
+</outline>
+</outline>
+<outline text="Multi Arm Bandit Problem"></outline>
+<outline text="Newer architectutes"><outline text=""></outline>
+</outline>
+</outline>
+<outline text="Experimentation and Active Learning"><outline text="Data Science and analytics need data (not to mention Big-Data)"></outline>
+<outline text="What if you don’t have data"></outline>
+<outline text="Creating Data and analysing it (sometimes rolled into the same grand problem statement)"><outline text="Taking Sample"></outline>
+</outline>
+<outline text="Online vs Offline context of creating data" _note="Does not mean you are on the internet"><outline text="Online gets covered in Reinforcement Learning" _note="designed for end user"><outline text="Learns while running live"></outline>
+<outline text="Designed for end user"></outline>
+</outline>
+<outline text="In Offline we will discuss Design of Experiments (DOE) and Active Learning" _note="not designed for end user&#10;DOE - Design of Statistical Data"><outline text="Learns while not running"></outline>
+<outline text="Designed for end user"><outline text="Bad experiment has low risk"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Critical difference between observational data and offline experimental data in DOE"><outline text="observational data"><outline text="does not interfere with the system"></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Model Training" _note="Finally, train your models. This step is pretty formulaic once you&apos;ve done the first 4"><outline text="Preprocessing"><outline text="Often, transforming your features first can further improve performance."></outline>
+</outline>
+<outline text="Splitting Data" _note="split your data before doing anything&#10;Hyperparameters"><outline text="Training set"><outline text="used to fit and tune your models"></outline>
+</outline>
+<outline text="Test set" _note="don’t touch your test set until you’re ready to choose your final model"><outline text="put aside as &quot;unseen&quot; data to evaluate your models"></outline>
+</outline>
+<outline text="Validation/Hold Out set"><outline text="Final report/metric"></outline>
+</outline>
+<outline text="Cross-validation" _note="method for getting a reliable estimate of model performance using only your training data.&#10;Because you created 10 mini train/test splits, this score is usually pretty reliable."><outline text="10-fold cross-validation" _note="breaks your training data into 10 equal parts (a.k.a. folds), essentially creating 10 miniature train/test splits.&#10;These are the steps for 10-fold cross-validation:&#10;cross-validated score:&#10;The average performance across the 10 hold-out folds is your final performance estimate"><outline text="Split your data into 10 equal parts, or &quot;folds&quot;."></outline>
+<outline text="Train your model on 9 folds (e.g. the first 9 folds)."></outline>
+<outline text="Evaluate it on the 1 remaining &quot;hold-out&quot; fold."></outline>
+<outline text="Perform steps (2) and (3) 10 times, each time holding out a different fold."></outline>
+<outline text="Average the performance across all 10 hold-out folds."></outline>
+</outline>
+<outline text="(k-fold) Cross-validation" _note="Cross-validation is a deterministic method for model building, achieved by leaving out one of k segments, or folds, of a dataset, training on all k-1 segments, and using the remaining kth segment for testing; this process is then repeated k times, with the individual prediction error results being combined and averaged in a single, integrated model. This provides variability, with the goal of producing the most accurate predictive models possible."><outline text=""></outline>
+</outline>
+<outline text="perform the entire cross-validation loop detailed above on each set of hyperparameter values" _note="The high-level pseudo-code looks like this:&#10;For each algorithm (i.e. regularized regression, random forest, etc.):&#10;For each set of hyperparameter values to try:&#10;Perform cross-validation using the training set.&#10;Calculate cross-validated score.&#10;Then, we&apos;ll pick the best set of hyperparameters within each algorithm.&#10;For each algorithm:&#10;Keep the set of hyperparameter values with best cross-validated score.&#10;Re-train the algorithm on the entire training set (without cross-validation)."></outline>
+</outline>
+</outline>
+<outline text="Improve Results"><outline text="Ensembling" _note="You can squeeze out even more performance by combining predictions from multiple separate models.&#10;Flexibility of not being constrained rigidity of the base predictor&#10;learners may have: Different&#10;Can helps reduce Bias and Variance&#10;Cjallenge:&#10;Made independent models/learner"><outline text="Algorithms"></outline>
+<outline text="Hyperparameter"></outline>
+<outline text="Training Set"></outline>
+<outline text="Representation"></outline>
+<outline text="Bagging" _note="uses complex base models and tries to &quot;smooth out&quot; their predictions&#10;Full Form - Bootstrap Aggregating"><outline text="aka Bootstrap Aggregation"></outline>
+<outline text="reduce the chance overfitting complex models."></outline>
+<outline text="strong learner = relatively unconstrained"></outline>
+<outline text="then combines strong learners together to &quot;smooth out&quot; their predictions"></outline>
+</outline>
+<outline text="Boosting"><outline text="improve the predictive flexibility of simple models."></outline>
+<outline text="trains a large number of &quot;weak&quot; learners in sequence" _note="Weak Learner -&gt; constrained model (i.e. you could limit the max depth of each decision tree"></outline>
+<outline text="Each one in the sequence focuses on learning from the mistakes of the one before it."></outline>
+<outline text="then combines all the weak learners into a single strong learner."></outline>
+</outline>
+<outline text="Stacking and choosing"></outline>
+<outline text="Ideal for parallel processing environment"></outline>
+</outline>
+<outline text="Finding Model parameters" _note="sometimes just called as parameters&#10;e.g. regression coefficients&#10;e.g. decision tree split locations&#10;learned directly from the training data"><outline text="learned attributes that define individual models"></outline>
+<outline text="⭐️ Optimization Techniques"><outline text="Optimization"><outline text="process of finding the point that minimizes a function"></outline>
+</outline>
+<outline text="Local vs. Global Optima"><outline text="local minimum"><outline text="point where the function value is smaller than or equal to the value at nearby points, but possibly greater than at a distant point."></outline>
+</outline>
+<outline text="global minimum"><outline text="point where the function value is smaller than or equal to the value at all other feasible points."></outline>
+</outline>
+</outline>
+<outline text="⭐️ Gradient Descent"><outline text="b = a - γ∇F(a)"><outline text="b"><outline text="next position"></outline>
+</outline>
+<outline text="a"><outline text="current position"><outline text="aka gradient"></outline>
+</outline>
+</outline>
+<outline text="∇F(a)"><outline text="gradient term"><outline text="direction of stepest ascend"></outline>
+</outline>
+<outline text=""><outline text="∇F(a)"></outline>
+<outline text="direction of stepest descend"></outline>
+</outline>
+</outline>
+<outline text="γ"><outline text="gamma = weight factor"></outline>
+<outline text="learning rate"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Normal Method"></outline>
+<outline text="using Line Search Algorithm"><outline text="automatically finds value for alpha"></outline>
+<outline text="Conjugate Gradient"></outline>
+<outline text="BFGS"></outline>
+<outline text="L-BFGS"></outline>
+</outline>
+</outline>
+<outline text="found after training the model"></outline>
+</outline>
+<outline text="Hyperparameters" _note="e.g. strength of the penalty used in regularized regression&#10;e.g. the number of trees to include in a random forest&#10;They are decided before fitting the model because they can&apos;t be learned from the data"><outline text="&quot;higher-level&quot; structural settings for algorithms"></outline>
+<outline text="decided before training the model"></outline>
+<outline text="Hyperparameter tuning"><outline text="Manually"></outline>
+<outline text="Grid Search"></outline>
+</outline>
+</outline>
+<outline text="Regularization" _note="used to prevent overfitting&#10;artificially penalizing model coefficients"><outline text="automatically removing extra features"></outline>
+<outline text="there’s no &quot;best&quot; type of penalty"><outline text="depends on the dataset and the problem"></outline>
+</outline>
+<outline text=""></outline>
+</outline>
+<outline text="Errors"><outline text="Bias"><outline text="high bias / underfitting"><outline text="pays little attention to data"><outline text="using very few features"></outline>
+</outline>
+<outline text="over simplified"></outline>
+<outline text="usually have high error on training set"><outline text="Low R squares"></outline>
+<outline text="Large Sum Of Squares Errors"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Variance"><outline text="high variance/overfit"><outline text="plays too much attention to data"><outline text="does not generalise very well"></outline>
+<outline text="many features, carefully optimised performance on training set"></outline>
+</outline>
+<outline text="overfits"></outline>
+<outline text="much high error on test data than on training data"></outline>
+</outline>
+</outline>
+<outline text="Irreducible error"><outline text="also known as &quot;noise,&quot; and it can&apos;t be reduced by your choice in algorithm. It typically comes from inherent randomness, a mis-framed problem, or an incomplete feature set."></outline>
+</outline>
+<outline text="Bias-Variance Dilemma and No. of Features"></outline>
+</outline>
+</outline>
+<outline text="Improving Speed"><outline text="⭐️ Vectorization"><outline text="loops will make you wait a lot for a result. Thats why we need vectorization to get rid of some of our for loops."></outline>
+<outline text="NumPy library (dot) function is using vectorization by default."></outline>
+<outline text="The vectorization can be done on CPU or GPU thought the SIMD operation. But its faster on GPU."></outline>
+<outline text="Whenever possible avoid for loops."></outline>
+<outline text="Most of the NumPy library methods are vectorized version."></outline>
+</outline>
+<outline text="Normalization of Features"></outline>
+</outline>
+<outline text="Select winner: evaluation metrics"><outline text="use test set get a reliable estimate of each models&apos; performance."></outline>
+<outline text="regression tasks"><outline text="Mean Squared Error (MSE) or Mean Absolute Error (MAE). (Lower values are better)"><outline text="Mean Absolute Error."><outline text="MAE = sum( abs(predicted_i - actual_i) ) / total predictions"><outline text="sum of the absolute differences between predictions and actual values"></outline>
+</outline>
+<outline text="gives an idea of the magnitude of the error, but no idea of the direction"><outline text="over or under predicting"></outline>
+</outline>
+<outline text="0 indicates no error or perfect predictions"></outline>
+</outline>
+<outline text="Mean Squared Error."><outline text="like the mean absolute error in that it provides a gross idea of the magnitude of error"></outline>
+</outline>
+<outline text="Root Mean Squared Error (or RMSE)"><outline text="RMSE = sqrt( sum( (predicted_i - actual_i)^2 ) / total predictions)"></outline>
+<outline text="Taking the square root of the mean squared error converts the units back to the original units of the output variable and can be meaningful for description and presentation"></outline>
+</outline>
+</outline>
+<outline text="R^2."><outline text="aka coefficient of determination"><outline text="statistical literature"></outline>
+</outline>
+<outline text="provides an indication of the goodness of fit of a set of predictions to the actual values"></outline>
+<outline text="0 and 1 for no-fit and perfect fit respectively"></outline>
+</outline>
+</outline>
+<outline text="classification tasks"><outline text="Classification Accuracy."><outline text="accuracy = correct predictions / total predictions * 100"></outline>
+<outline text="number of correct predictions made as a ratio of all predictions made"></outline>
+<outline text="the most misused"></outline>
+<outline text="only suitable when there are an equal number of observations in each class and all predictions and prediction errors are equally important"></outline>
+</outline>
+<outline text="Logarithmic Loss."><outline text="evaluating the predictions of probabilities of membership to a given class"></outline>
+<outline text="scalar probability between 0 and 1"><outline text="measure of confidence for a prediction by an algorithm"></outline>
+</outline>
+<outline text="Predictions that are correct or incorrect are rewarded or punished proportionally to the confidence of the prediction"></outline>
+</outline>
+<outline text="Area Under ROC Curve (AUROC). (Higher values are better)"><outline text="for binary classification problems"><outline text="A binary classification problem is really a trade-off between sensitivity and specificity"></outline>
+</outline>
+<outline text="represents a model’s ability to discriminate between positive and negative classes"></outline>
+<outline text="area of 1.0 represents a model that made all predictions perfectly"></outline>
+<outline text="An area of 0.5 represents a model as good as random"></outline>
+<outline text="can be broken down into sensitivity and specificity"><outline text="Sensitivity"><outline text="true positive rate also called the recall."></outline>
+<outline text="number instances from the positive (first) class that actually predicted correctly."></outline>
+</outline>
+<outline text="Specificity"><outline text="true negative rate. Is the number of instances from the negative class (second) class that were actually predicted correctly."></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Confusion Matrix"><outline text="Accuracy = (TP+TN)/(P+N)"></outline>
+<outline text="Precision = TP/(TP+FP)"></outline>
+<outline text="Recall/TP rate = TP/P"></outline>
+<outline text="FP Rate =  FP/N"></outline>
+</outline>
+</outline>
+<outline text="Unsupervised Learning - Evaluation"><outline text="Much harder to evaluate, depends on overall goal of the task"></outline>
+<outline text="Never had “Correct Labels” to compare to"></outline>
+<outline text="Cluster Homogeneity, Rand Index"></outline>
+</outline>
+<outline text="Reinforcement Learning - Evaluation"><outline text="Usually more obvious, since the “evaluation” is built into the actual training of the model."></outline>
+<outline text="How well the model performs the task its assigned."></outline>
+</outline>
+<outline text="questions to help you pick the winning model:"><outline text="Which model had the best performance on the test set? (performance)"></outline>
+<outline text="Does it perform well across various performance metrics? (robustness)"></outline>
+<outline text="Did it also have (one of) the best cross-validated scores from the training set? (consistency)"></outline>
+<outline text="Does it solve the original business problem? (win condition)"></outline>
+</outline>
+<outline text="Quadratic Cost"></outline>
+<outline text="Cross Entropy Loss"></outline>
+</outline>
+</outline>
+<outline text="Communicate the Data" _note="Quantitatively describing the data"><outline text="presentation"><outline text="Tabular Representation"></outline>
+<outline text="Summary Statistics"></outline>
+</outline>
+<outline text="speaking"></outline>
+<outline text="visuals" _note="Graphical Representation"><outline text="Single Variable"><outline text="For Categorical"><outline text="Bar Chart"><outline text="Shows order"></outline>
+</outline>
+<outline text="Pie Chart"><outline text="More suited for nominal variable"></outline>
+<outline text="Frequency represented as percentage"></outline>
+</outline>
+</outline>
+<outline text="For Quantitative Variables"><outline text="Box Plot"><outline text="Central Tendacy"><outline text="Red Line"></outline>
+<outline text="Generally Median"></outline>
+</outline>
+<outline text="Variability"><outline text="Box"><outline text="Lower Quartile"></outline>
+</outline>
+</outline>
+<outline text="Quartile"><outline text="Upper"><outline text="75%"></outline>
+</outline>
+<outline text="Lower"><outline text="25%"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Histogram"><outline text="how many data points you have within this range"></outline>
+<outline text="Frequency of occurance"></outline>
+<outline text="Distribution"><outline text="Denoted by red line"></outline>
+</outline>
+<outline text="Bins"><outline text="Values on x axis"></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Multiple Variable"><outline text="Scatter Plot"><outline text="Two Quantitative Variables"></outline>
+</outline>
+<outline text="Box Plots"><outline text="One Quantitative with One Qualitative Variable"></outline>
+</outline>
+<outline text="Contingency Table"><outline text="2 categorical variables with frequency of occurrences as the theme"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Outliers"><outline text="Point of Focus"><outline text="Focus on the outlier directly and show how it stands out from the rest"></outline>
+<outline text="Visually, differences outweigh similarities."></outline>
+<outline text="Pros"><outline text="draws attention away from the averages"></outline>
+<outline text="the reader’s eyes head straight to a single point."></outline>
+</outline>
+<outline text="Cons"><outline text="Showing an outlier on the same scale can overly obscure the rest of the data"></outline>
+<outline text="distribution"><outline text="gets squished"></outline>
+</outline>
+<outline text="scatter plot"><outline text="data squished into a corner"></outline>
+</outline>
+</outline>
+<outline text="Examples"></outline>
+</outline>
+<outline text="Breakout"><outline text="Visualize the data as you normally would for an overview, and then zoom in or highlight outliers to explain."></outline>
+<outline text="Pros"><outline text="get a sense of the overall distribution of the data"><outline text="instead of immediately focusing on what doesn’t belong."></outline>
+</outline>
+</outline>
+<outline text="Cons"><outline text="outliers might end up in obscurity or overlooked"></outline>
+<outline text="your job to draw attention to outliers if they’re not obvious"></outline>
+</outline>
+<outline text="Examples"></outline>
+</outline>
+<outline text="Scale Adjustment"><outline text="dynamic scales"><outline text="Sometimes outliers are viewed better on a different scale that allows for extremes and averages to display at the same time"></outline>
+</outline>
+<outline text="Pros"><outline text="show the full dataset without obscuring too much"></outline>
+<outline text="outlier on one scale might be normal on another"></outline>
+</outline>
+<outline text="Cons"><outline text="Fuss around too much, and what was a pro might end up a con"></outline>
+<outline text="You don’t want to visualize an outlier as average if it’s an outlier."></outline>
+</outline>
+<outline text="Examples"></outline>
+</outline>
+<outline text="Reference Point"><outline text="Use the outlier as a point of comparison for a sense of scale or to make the data more relatable."></outline>
+<outline text="Pros"><outline text="Outliers are often really large or really small, so the scale can sometimes get lost in the mix. By using the outlier as a reference point against something familiar, the data also becomes more familiar."></outline>
+</outline>
+<outline text="Cons"><outline text="This route highlights differences between the outlier and the other data points."></outline>
+<outline text="Be careful not to lose the overall distribution in the process."></outline>
+</outline>
+<outline text="Examples"></outline>
+</outline>
+<outline text="Providing Context"><outline text="Maybe you don’t want to highlight the outlier. Maybe it’s not as important as the rest of the dataset. In this case, use it as context or background."></outline>
+<outline text="Pros"><outline text="The patterns in the full dataset don’t get lost in scale adjustments, which can make for easier reading."></outline>
+</outline>
+<outline text="Cons"><outline text="The outlier could become a side thought or ends up too far in the background that it is forgotten."></outline>
+<outline text="Use your best judgement."></outline>
+</outline>
+<outline text="Examples"></outline>
+</outline>
+</outline>
+<outline text="writing"></outline>
+</outline>
+<outline text="⭐️ Deep Learning" _note="process of applying deep neural network technologies - that is, neural network architectures with multiple hidden layers of neurons - to solve problems."><outline text="Why is deep learning taking off?"><outline text="Data"><outline text="For small data NN can perform as Linear regression or SVM (Support vector machine)"></outline>
+<outline text="For big data a small NN is better that SVM"></outline>
+<outline text="For big data a big NN is better that a medium NN is better that small NN."></outline>
+</outline>
+<outline text="Computation"><outline text="GPUs."></outline>
+<outline text="Powerful CPUs."></outline>
+<outline text="Distributed computing."></outline>
+<outline text="ASICs"></outline>
+</outline>
+<outline text="Algorithm"><outline text="Creative algorithms has appeared that changed the way NN works."></outline>
+</outline>
+</outline>
+<outline text="Notations"><outline text="M"><outline text="number of training vectors"></outline>
+</outline>
+<outline text="Nx"><outline text="size of the input vector"></outline>
+</outline>
+<outline text="Ny"><outline text="size of the output vector"></outline>
+</outline>
+<outline text="X(1)"><outline text="first input vector"></outline>
+</outline>
+<outline text="Y(1)"><outline text="first output vector"></outline>
+</outline>
+<outline text="X = [x(1) x(2).. x(M)]"></outline>
+<outline text="Y = (y(1) y(2).. y(M))"></outline>
+</outline>
+<outline text="steps for building a Neural Network"><outline text="Define the model structure (such as number of input features and outputs)"></outline>
+<outline text="Initialize the model&apos;s parameters."></outline>
+<outline text="Loop."><outline text="Calculate current loss (forward propagation)"></outline>
+<outline text="Calculate current gradient (backward propagation)"></outline>
+<outline text="Update parameters (gradient descent)"></outline>
+</outline>
+</outline>
+<outline text=""></outline>
+<outline text="NN"><outline text="Activation Function"><outline text="Input"></outline>
+<outline text="Perform matrix functions"></outline>
+<outline text="For each node"><outline text="Input *weight + bias activate"></outline>
+</outline>
+</outline>
+<outline text="Weighted Summation of Input"><outline text="Cannot be same or zero"></outline>
+<outline text="Needs random initialization"></outline>
+</outline>
+<outline text="Bias"><outline text=""></outline>
+</outline>
+<outline text="Transfer function"></outline>
+</outline>
+<outline text="Activation Functions" _note="Nonlinearities"><outline text="decides if a neuron should activate if a certain threshold is reached"><outline text="Introduces non-linear property to the network"><outline text="linear function is a polynomial of just one degree"><outline text="y=2x"></outline>
+<outline text="always form a"><outline text="straight line"></outline>
+<outline text="hyperplane"></outline>
+</outline>
+<outline text="with no curves of any kind"></outline>
+<outline text="no matter how many linear layers we have, a nn with just linear layer it will still behave like a single layer"><outline text="because summing these layers will give us just another linear function"></outline>
+</outline>
+</outline>
+<outline text="polynomials of higher degrees are non-linear"><outline text="always has some curvature"></outline>
+</outline>
+</outline>
+<outline text="Should be differentiable"><outline text="so that we can optimize it"></outline>
+</outline>
+</outline>
+<outline text="Types"><outline text="Sigmoid"><outline text="(x) = 1 / (1 + exp(-x))"></outline>
+<outline text="Range from [0,1]."></outline>
+<outline text="Not Zero Centered."><outline text="makes the gradient updates go too far in different directions"></outline>
+<outline text="0 &lt; output &lt; 1, and it makes optimization harder."></outline>
+</outline>
+<outline text="Have Exponential Operation (Its Computationally Expensive!!!)"></outline>
+<outline text="Problem"><outline text="Vanishing gradient problem"></outline>
+<outline text="Sigmoids saturate and kill gradients."></outline>
+<outline text="have slow convergence."></outline>
+</outline>
+</outline>
+<outline text="Tanh"><outline text="f(x) = 1 — exp(-2x) / 1 + exp(-2x)"></outline>
+<outline text=""></outline>
+</outline>
+</outline>
+<outline text="Choosing Activation Function"><outline text="Sigmoid functions and their combinations generally work better in the case of classifiers"></outline>
+<outline text="Sigmoids and tanh functions are sometimes avoided due to the vanishing gradient problem"></outline>
+<outline text="ReLU function is a general activation function and is used in most cases these days"></outline>
+<outline text="If we encounter a case of dead neurons in our networks the leaky ReLU function is the best choice"></outline>
+<outline text="Always keep in mind that ReLU function should only be used in the hidden layers"></outline>
+<outline text="As a rule of thumb, you can begin with using ReLU function and then move over to other activation functions in case ReLU doesn’t provide with optimum results"></outline>
+<outline text="Default hidden layer activation function is ReLU"></outline>
+<outline text="Sigmoid only for binary classification output layer"></outline>
+</outline>
+</outline>
+<outline text="Neural Network"><outline text=""></outline>
+<outline text="Example dividing using multiple Regressions and combining leads o right answer"><outline text="Logistic Regression"><outline text="Continuos"></outline>
+<outline text="Error Function"><outline text="Activation Function"><outline text="Takes entire number line into the interval 0-1"></outline>
+<outline text="Formula Sigmoid"></outline>
+<outline text="Probability of all  4 happening is product"><outline text="0.0084"><outline text="not likely to happen"></outline>
+</outline>
+<outline text="0.3024"><outline text="more likely"></outline>
+</outline>
+<outline text="How to turn product of things into sum of things?"><outline text="Logarithms"><outline text="higher the probability the smaller the sum of logs is"></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Penalty for Errors"><outline text=""></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Function Approximation"><outline text="Given any data with will try to approximate the function that produced it."></outline>
+</outline>
+<outline text=""></outline>
+</outline>
+<outline text="Architectures"><outline text=""></outline>
+<outline text=""></outline>
+<outline text="Useful in Speech recognition or NLP"><outline text="introduce different type of cells — Recurrent cells"><outline text="Apart from that, it was like common FNN."></outline>
+</outline>
+<outline text="many variations"><outline text="passing the state to input nodes"></outline>
+<outline text="variable delays"></outline>
+<outline text="Jordan network"><outline text="first network of this type"></outline>
+<outline text="each of hidden cell received it’s own output with fixed delay"></outline>
+<outline text="one or more iterations"></outline>
+</outline>
+</outline>
+<outline text="used when context is important"><outline text="decisions from past iterations or samples can influence current ones."></outline>
+<outline text="contexts are texts"></outline>
+</outline>
+<outline text=""></outline>
+</outline>
+<outline text="Auto Encoders (AE)" _note="well suited for unsupervised learning, a method for detecting inherent patterns in a data set"><outline text="Trained with Backpropogation with Loss"><outline text="Loss"><outline text="measures the amount of information about the input that was lost through the encoding-decoding process"></outline>
+<outline text="lower the loss value, the stronger the net."><outline text="more accurate image"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Normal"><outline text="capable of creating sparse representations of the input data"></outline>
+<outline text="2-way translation"><outline text="Encoding"><outline text="Input signals are encoded along the path to the hidden layer"></outline>
+<outline text="Find a way to represent data with smaller number of neurons."></outline>
+</outline>
+<outline text="Compressed Representation / Latent Space Representation"></outline>
+<outline text="Decoding"><outline text="these same signals are decoded along the path to the output layer"></outline>
+</outline>
+</outline>
+<outline text="Input and Output size of AutoEncoder is same."><outline text="Typically the same weights used for encoding are used for decoding."></outline>
+</outline>
+<outline text="typically shallow nets"><outline text="most common of which have one input layer, one hidden layer, and one output layer"></outline>
+</outline>
+</outline>
+<outline text="Output is the same as input"></outline>
+<outline text="Used in"><outline text="dimensionality reduction"><outline text="The purpose of this compression is to the reduce the input size on a set of data before feeding it to a deep classifier"></outline>
+<outline text="much more powerful than their predecessor, principal component analysis"></outline>
+</outline>
+<outline text="anomoly detection"><outline text="train it on normal instances, pass anomoly, anamoly gets bad reconstruction"></outline>
+</outline>
+<outline text="Image Compression"><outline text="compress the image on one side"></outline>
+<outline text="reconstruct the image on another"></outline>
+</outline>
+<outline text="Denoising Images"></outline>
+<outline text="Image Search"><outline text="Compress using autoencoder"></outline>
+<outline text="make index"></outline>
+<outline text="find image by compression"></outline>
+</outline>
+</outline>
+<outline text="Types"><outline text="Variational"><outline text="learn representation and can also draw new images as well"></outline>
+<outline text="Image generations"></outline>
+<outline text="Image colorization"></outline>
+<outline text="Chat bots"></outline>
+</outline>
+<outline text="Deep/Stacked auto-encoders"></outline>
+<outline text="Denoising"><outline text="presented with noisy images, it will produce original image"></outline>
+</outline>
+<outline text="Sparse"></outline>
+<outline text="Contractive"></outline>
+</outline>
+</outline>
+<outline text=""></outline>
+<outline text="Convolutional Neural Networks (ConvNets or CNNs)"><outline text="Deep Learning"><outline text=""></outline>
+</outline>
+<outline text="Why convolutions?"></outline>
+<outline text="3 types of layers"><outline text="Convolutional Layers."><outline text="process input data"></outline>
+<outline text="Filters" _note="If the convolutional layer is an input layer, then the input patch will be pixel values.&#10;If the deeper in the network architecture, then the convolutional layer will take input from a feature map from the previous layer."><outline text="are the “neurons” of the layer"></outline>
+<outline text="have input weights and output a value"></outline>
+<outline text="input size is a fixed square called a patch or a receptive field"></outline>
+</outline>
+<outline text="Feature Maps"><outline text="output of one filter applied to the previous layer"></outline>
+<outline text="A given filter is drawn across the entire previous layer, moved one pixel at a time. Each position results in an activation of the neuron and the output is collected in the feature map. You can see that if the receptive field is moved one pixel from activation to activation, then the field will overlap with the previous activation by (field width – 1) input values."></outline>
+</outline>
+<outline text="Zero Padding"><outline text="The distance that filter is moved across the the input from the previous layer each activation is referred to as the stride."></outline>
+<outline text="If the size of the previous layer is not cleanly divisible by the size of the filters receptive field and the size of the stride then it is possible for the receptive field to attempt to read off the edge of the input feature map. In this case, techniques like zero padding can be used to invent mock inputs for the receptive field to read."></outline>
+</outline>
+</outline>
+<outline text="Pooling Layers."><outline text="simplify it"><outline text="down-sample"></outline>
+<outline text="reducing unnecessary features"></outline>
+</outline>
+<outline text="Pooling layers follow a sequence of one or more convolutional layers and are intended to consolidate the features learned and expressed in the previous layers feature map. As such, pooling may be consider a technique to compress or generalize feature representations and generally reduce the overfitting of the training data by the model."></outline>
+<outline text="They too have a receptive field, often much smaller than the convolutional layer. Also, the stride or number of inputs that the receptive field is moved for each activation is often equal to the size of the receptive field to avoid any overlap."></outline>
+<outline text="Pooling layers are often very simple, taking the average or the maximum of the input value in order to create its own feature map."></outline>
+</outline>
+<outline text="Fully-Connected Layers."><outline text="commonly attached to the final convolutional layer for further data processing."></outline>
+<outline text="may have a non-linear activation function or a softmax activation in order to output probabilities of class predictions."><outline text="mostly using non-linear functions, like max"></outline>
+</outline>
+<outline text="used at the end of the network after feature extraction and consolidation has been performed by the convolutional and pooling layers"></outline>
+<outline text="used to create final non-linear combinations of features and for making predictions by the network."></outline>
+</outline>
+</outline>
+<outline text="Best Practices"><outline text="Input Receptive Field Dimensions"><outline text="The default is 2D for images, but could be 1D such as for words in a sentence or 3D for video that adds a time dimension."></outline>
+</outline>
+<outline text="Receptive Field Size"><outline text="The patch should be as small as possible, but large enough to “see” features in the input data."></outline>
+<outline text="It is common to use"><outline text="3×3 on small images"></outline>
+<outline text="5×5 or 7×7 and more on larger image sizes."></outline>
+</outline>
+</outline>
+<outline text="Stride Width"><outline text="Use the default stride of 1."></outline>
+<outline text="It is easy to understand and you don’t need padding to handle the receptive field falling off the edge of your images."></outline>
+<outline text="This could increased to 2 or larger for larger images."></outline>
+</outline>
+<outline text="Number of Filters"><outline text="Filters are the feature detectors. Generally fewer filters are used at the input layer and increasingly more filters used at deeper layers."></outline>
+</outline>
+<outline text="Padding"><outline text="Set to zero and called zero padding when reading non-input data. This is useful when you cannot or do not want to standardize input image sizes or when you want to use receptive field and stride sizes that do not neatly divide up the input image size."></outline>
+</outline>
+<outline text="Pooling"><outline text="Pooling is a destructive or generalization process to reduce overfitting. Receptive field is almost always set to to 2×2 with a stride of 2 to discard 75% of the activations from the output of the previous layer."></outline>
+</outline>
+<outline text="Data Preparation"><outline text="Consider standardizing input data, both the dimensions of the images and pixel values."></outline>
+</outline>
+<outline text="Pattern Architecture"><outline text="It is common to pattern the layers in your network architecture. This might be one, two or some number of convolutional layers followed by a pooling layer. This structure can then be repeated one or more times. Finally, fully connected layers are often only used at the output end and may be stacked one, two or more deep."></outline>
+</outline>
+<outline text="Dropout"><outline text="CNNs have a habit of overfitting, even with pooling layers. Dropout should be used such as between fully connected layers and perhaps after pooling layers."></outline>
+</outline>
+</outline>
+<outline text="Uses"><outline text="Computer Vision: image recognition"><outline text="they operate on small subset of image"></outline>
+<outline text="input window is sliding along the image, pixel by pixel"></outline>
+<outline text="data is passed to convolution layers, that form a funnel (compressing detected features)"></outline>
+<outline text="first layer detects gradients, second lines, third shapes, and so on to the scale of particular objects"></outline>
+</outline>
+<outline text="NLP"></outline>
+</outline>
+<outline text="Worked Example"><outline text=""><outline text="Image Input Data"></outline>
+<outline text="Let’s assume we have a dataset of grayscale images. Each image has the same size of 32 pixels wide and 32 pixels high, and pixel values are between 0 and 255, g.e. a matrix of 32x32x1 or 1024 pixel values."></outline>
+<outline text="Image input data is expressed as a 3-dimensional matrix of width * height * channels. If we were using color images in our example, we would have 3 channels for the red, green and blue pixel values, e.g. 32x32x3."></outline>
+</outline>
+<outline text=""><outline text="Convolutional Layer"></outline>
+<outline text="We define a convolutional layer with 10 filters and a receptive field 5 pixels wide and 5 pixels high and a stride length of 1."></outline>
+<outline text="Because each filter can only get input from (i.e. “see”) 5×5 (25) pixels at a time, we can calculate that each will require 25 + 1 input weights (plus 1 for the bias input)."></outline>
+<outline text="Dragging the 5×5 receptive field across the input image data with a stride width of 1 will result in a feature map of 28×28 output values or 784 distinct activations per image."></outline>
+<outline text="We have 10 filters, so that is 10 different 28×28 feature maps or 7,840 outputs that will be created for one image."></outline>
+<outline text="Finally, we know we have 26 inputs per filter, 10 filters and 28×28 output values to calculate per filter, therefore we have a total of 26x10x28x28 or 203,840 “connections” in our convolutional layer, we we want to phrase it using traditional neural network nomenclature."></outline>
+<outline text="Convolutional layers also make use of a nonlinear transfer function as part of activation and the rectifier activation function is the popular default to use."></outline>
+</outline>
+<outline text=""><outline text="Pool Layer"></outline>
+<outline text="We define a pooling layer with a receptive field with a width of 2 inputs and a height of 2 inputs. We also use a stride of 2 to ensure that there is no overlap."></outline>
+<outline text="This results in feature maps that are one half the size of the input feature maps. From 10 different 28×28 feature maps as input to 10 different 14×14 feature maps as output."></outline>
+<outline text="We will use a max() operation for each receptive field so that the activation is the maximum input value."></outline>
+</outline>
+<outline text=""><outline text="Fully Connected Layer"></outline>
+<outline text="Finally, we can flatten out the square feature maps into a traditional flat fully connected layer."></outline>
+<outline text="We can define the fully connected layer with 200 hidden neurons, each with 10x14x14 input connections, or 1960 + 1 weights per neuron. That is a total of 392,200 connections and weights to learn in this layer."></outline>
+<outline text="We can use a sigmoid or softmax transfer function to output probabilities of class values directly."></outline>
+</outline>
+</outline>
+<outline text="Similar Architectures"><outline text=""></outline>
+</outline>
+</outline>
+<outline text=""></outline>
+<outline text=""></outline>
+</outline>
+<outline text="How Tensorflow Works"><outline text=""></outline>
+<outline text=""></outline>
+</outline>
+</outline>
+<outline text="Tools" _note="Stage 1: Ask A Question&#10;•	Skills: science, domain expertise, curiosity&#10;•	Tools: your brain, talking to experts, experience&#10;Stage 2: Get the Data&#10;•	Skills: web scraping, data cleaning, querying databases, CS stuff&#10;•	Tools: python, pandas&#10;Stage 3: Explore the Data&#10;•	Skills: Get to know data, develop hypotheses, patterns? anomalies?&#10;•	Tools: matplotlib, numpy, scipy, pandas, mrjob"><outline text="Libraries"><outline text="Amazon Machine Learning"></outline>
+</outline>
+<outline text="Python stack"><outline text="Numpy"><outline text="efficient numerical computations"></outline>
+<outline text="Multi-Dimensional Arrays + Matrices"></outline>
+<outline text="Mathematical Functions"><outline text="Standard Deviation" _note="np.std(numbers)"></outline>
+<outline text="Mean" _note="np.mean(numbers)"></outline>
+<outline text="Median" _note="np.median(numbers)"></outline>
+</outline>
+</outline>
+<outline text="Pandas"><outline text="algorithms and model training"></outline>
+<outline text="Similar to R" _note="Desciptive stats like r"></outline>
+<outline text="DataFrames"><outline text=".read_csv()"></outline>
+<outline text=".to_csv()"></outline>
+<outline text=".describe()"></outline>
+<outline text=".fillna()"></outline>
+</outline>
+</outline>
+<outline text="Scikit-Learn"><outline text="algorithms and model training"></outline>
+</outline>
+<outline text="TensorFlow"></outline>
+<outline text="Seaborn"><outline text="easy/common visualizations"></outline>
+</outline>
+<outline text="Matplotlib"><outline text="customize visualizations"></outline>
+</outline>
+</outline>
+<outline text="R"></outline>
+<outline text="Stage 1: Ask A Question"><outline text="Skills: science, domain expertise, curiosity"></outline>
+<outline text="Tools: your brain, talking to experts, experience"></outline>
+</outline>
+<outline text="Stage 2: Get the Data"><outline text="Skills: web scraping, data cleaning, querying databases, CS stuff"></outline>
+<outline text="Tools: python, pandas"></outline>
+</outline>
+<outline text="Stage 3: Explore the Data"><outline text="Skills: Get to know data, develop hypotheses, patterns? anomalies?"></outline>
+<outline text="Tools: matplotlib, numpy, scipy, pandas, mrjob"></outline>
+</outline>
+</outline>
+<outline text="Data Storage"><outline text="Operational Database (OLTP)"><outline text="maintains day-to-day processing"><outline text="read and modify operations"></outline>
+<outline text="performance for well-known tasks"><outline text="searching"></outline>
+<outline text="indexing"></outline>
+</outline>
+<outline text="support concurrent processing"></outline>
+</outline>
+<outline text="Schema: Entity Relationship Model" _note="logical description of the entire database"></outline>
+<outline text="Normalization"></outline>
+</outline>
+<outline text="Data Warehouse (OLAP)"><outline text="maintains historical data."><outline text="often multidimensional"></outline>
+<outline text="Non-volatile"><outline text="previous data is not erased when new data is added to it"></outline>
+</outline>
+<outline text="Subject Oriented"><outline text="provides information around a subject rather than the organization&apos;s ongoing operations"></outline>
+</outline>
+<outline text="Integrated"><outline text="integrating data from heterogeneous sources"></outline>
+</outline>
+<outline text="Time Variant"><outline text="identified with a particular time period"></outline>
+</outline>
+<outline text="kept separate from operational database"><outline text="helps executives to"><outline text="organize"></outline>
+<outline text="understand"></outline>
+<outline text="use their data to take strategic decisions"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Types"><outline text="Information Processing"><outline text="allows to process the data stored in it"></outline>
+<outline text="querying"></outline>
+<outline text="basic statistical analysis"><outline text="tables"></outline>
+<outline text="charts"></outline>
+<outline text="graphs"></outline>
+</outline>
+<outline text="reporting using crosstabs"></outline>
+</outline>
+<outline text="Analytical Processing"><outline text="basic OLAP operations"></outline>
+</outline>
+<outline text="Data Mining"><outline text="finding hidden patterns and associations"></outline>
+<outline text="constructing analytical models, performing classification and prediction"></outline>
+</outline>
+</outline>
+<outline text="Dimension tables"><outline text="Updates"><outline text="Type 0: retain original"></outline>
+<outline text="Type 1: overwrite"></outline>
+<outline text="Type 2: add new row"></outline>
+<outline text="Type 3: add new attribute"></outline>
+<outline text="Type 4: add history table"></outline>
+<outline text="Type 6: hybrid" _note="1 + 2 + 3 = 6"></outline>
+</outline>
+</outline>
+<outline text="ETL (Extract, Transform and Load)"><outline text="pulling data out of the source systems and placing it into a data warehouse"><outline text="data is loaded in the DW system in the form of dimension and fact tables"></outline>
+</outline>
+<outline text="extracting the data"><outline text="data from source systems"></outline>
+<outline text="converted into one consolidated data warehouse format which is ready for transformation processing"></outline>
+</outline>
+<outline text="transforming the data"><outline text="applying business rules (so-called derivations, e.g., calculating new measures and dimensions),"></outline>
+<outline text="cleaning (e.g., mapping NULL to 0 or &quot;Male&quot; to &quot;M&quot; and &quot;Female&quot; to &quot;F&quot; etc.),"></outline>
+<outline text="filtering (e.g., selecting only certain columns to load),"></outline>
+<outline text="splitting a column into multiple columns and vice versa,"></outline>
+<outline text="joining together data from multiple sources (e.g., lookup, merge),"></outline>
+<outline text="transposing rows and columns,"></outline>
+<outline text="applying any kind of simple or complex data validation (e.g., if the first 3 columns in a row are empty then reject the row from processing)"></outline>
+</outline>
+<outline text="loading the data"><outline text="into a data warehouse or data repository other reporting applications"></outline>
+</outline>
+</outline>
+<outline text="Online Analytical Processing (OLAP)"><outline text="operations"><outline text="Drill/Roll-up"><outline text="aggregation on a data cube"><outline text="By climbing up a concept hierarchy for a dimension"></outline>
+<outline text="By dimension reduction"></outline>
+</outline>
+</outline>
+<outline text="drill down"><outline text="reverse operation of roll-up"><outline text="By stepping down a concept hierarchy for a dimension"></outline>
+<outline text="By introducing a new dimension."></outline>
+</outline>
+</outline>
+<outline text="slice"><outline text="selects one particular dimension from a given cube and provides a new sub-cube"></outline>
+</outline>
+<outline text="dice"><outline text="two or more dimensions from a given cube and provides a new sub-cube"></outline>
+</outline>
+<outline text="pivot"><outline text="also known as rotation"></outline>
+<outline text="rotates the data axes in view in order to provide an alternative presentation of data"></outline>
+</outline>
+</outline>
+<outline text="types"><outline text="Relational OLAP (ROLAP)"><outline text="placed between relational back-end server and client front-end tools"></outline>
+<outline text="uses relational or extended-relational DBMS"></outline>
+<outline text="includes the following −"><outline text="Implementation of aggregation navigation logic."></outline>
+<outline text="Optimization for each DBMS back end."></outline>
+<outline text="Additional tools and services."></outline>
+</outline>
+</outline>
+<outline text="Multidimensional OLAP (MOLAP)"><outline text="array-based multidimensional storage engines for multidimensional views of data"></outline>
+<outline text="storage utilization may be low if the data set is sparse"></outline>
+<outline text="server use two levels of data storage representation to handle dense and sparse data sets"></outline>
+</outline>
+<outline text="Hybrid OLAP (HOLAP)"><outline text="combination of both ROLAP and MOLAP"><outline text="higher scalability of ROLAP and faster computation of MOLAP."></outline>
+</outline>
+<outline text="higher scalability of ROLAP and faster computation of MOLAP."></outline>
+<outline text="aggregations are stored separately in MOLAP store."></outline>
+</outline>
+<outline text="Specialized SQL Servers"><outline text="provide advanced query language and query processing support for SQL queries over star and snowflake schemas in a read-only environment."></outline>
+</outline>
+</outline>
+<outline text="OLAP query needs only read only access of stored data"></outline>
+</outline>
+<outline text="Schema/Dimensional Modelling"><outline text="logical description of the entire database"></outline>
+<outline text="intended to support higher performance to end user queries"></outline>
+<outline text="uses concept of"><outline text="fact"><outline text="measures"></outline>
+<outline text="are typically numeric and can be aggregate"></outline>
+<outline text="sale amount is fact"></outline>
+</outline>
+<outline text="dimension"><outline text="context"></outline>
+<outline text="are group of hierarchies and descriptors that define the facts."></outline>
+<outline text="timestamp, product, register, store are dimensions"></outline>
+</outline>
+</outline>
+<outline text="Star Schema"><outline text="Each dimension represented with only one-dimension table"></outline>
+<outline text="dimension table contains the set of attributes"></outline>
+<outline text="Fact table"><outline text="at the center"></outline>
+<outline text="contains the keys to each of four dimensions"></outline>
+<outline text="contains the attributes, namely dollars sold and units sold"></outline>
+<outline text="Each dimension has only one dimension table and each table holds a set of attributes."></outline>
+<outline text="constraint may cause data redundancy"></outline>
+<outline text="usually in 3NF"><outline text="dimensions are de-normalized"></outline>
+</outline>
+</outline>
+<outline text="most popular"></outline>
+</outline>
+<outline text="Snowflake Schema"><outline text="Some dimension tables in the Snowflake schema are normalized. 3NF"></outline>
+<outline text="normalization splits up the data into additional tables."></outline>
+<outline text="redundancy is reduced"></outline>
+<outline text="easy to maintain and the save storage space."></outline>
+</outline>
+<outline text="Fact Constellation Schema"><outline text="fact constellation has multiple fact tables sharing dimension table"></outline>
+<outline text="galaxy schema."></outline>
+<outline text="more complex"><outline text="hard to manage and support"></outline>
+</outline>
+<outline text="Explained"><outline text="The sales fact table is same as that in the star schema."></outline>
+<outline text="The shipping fact table has the five dimensions, namely item_key, time_key, shipper_key, from_location, to_location."></outline>
+<outline text="The shipping fact table also contains two measures, namely dollars sold and units sold."></outline>
+<outline text="It is also possible to share dimension tables between fact tables. For example, time, item, and location dimension tables are shared between the sales and shipping fact table."></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Architecture"></outline>
+<outline text=""></outline>
+<outline text="Data Cubes"><outline text="helps us represent data in multiple dimensions."></outline>
+<outline text="defined by dimensions and facts"></outline>
+</outline>
+<outline text="Data Mart"><outline text="contain a subset of organization-wide data that is valuable to specific groups of people in an organization"><outline text="contains only those data that is specific to a particular group"></outline>
+</outline>
+</outline>
+<outline text="Meta Data"><outline text="Data about Data"></outline>
+<outline text="summarized data that leads to detailed data"></outline>
+<outline text="Role of meta data"><outline text="used to query tools"></outline>
+<outline text="used in extraction and cleansing tools"></outline>
+<outline text="reporting tools"></outline>
+<outline text="transformation"></outline>
+</outline>
+<outline text="Types"><outline text="Operational"><outline text="information of operational data source"></outline>
+</outline>
+<outline text="Extraction and Transformation"><outline text="info from extraction and transformation stages"></outline>
+</outline>
+<outline text="End-User"><outline text="navigational map of data warehouse"></outline>
+</outline>
+</outline>
+<outline text=""></outline>
+</outline>
+</outline>
+<outline text="" _note="Subjective term"><outline text="Data that is too big to be processed by a single machine"></outline>
+<outline text="Challenges"><outline text="Data is created rapidly"><outline text="Businesses should aim to store as much data as they can. Very little of it is worthless."></outline>
+</outline>
+<outline text="Come from different sources with different formats"></outline>
+</outline>
+<outline text="The Vs"><outline text="Volume"><outline text="size of data"></outline>
+</outline>
+<outline text="Variety"><outline text="different formats"></outline>
+</outline>
+<outline text="Velocity"><outline text="speed it&apos;s being generated and analysis of streaming data"></outline>
+</outline>
+<outline text="Variability"><outline text="inconsistencies in the data"><outline text="need to be found by anomaly and outlier detection methods"></outline>
+<outline text="order for any meaningful analytics to occur"></outline>
+</outline>
+</outline>
+<outline text="Veracity"><outline text="As any or all of the above properties increase, the veracity (confidence or trust in the data) drops."></outline>
+<outline text="provenance or reliability of the data source, its context, and how meaningful it is to the analysis based on it."></outline>
+</outline>
+<outline text="Value"><outline text="business value from the data"></outline>
+<outline text="Substantial value can be found in big data, including understanding your customers better, targeting them accordingly, optimizing processes, and improving machine or business performance."></outline>
+</outline>
+</outline>
+<outline text="Data Sources"><outline text="90% of world&apos;s data was created in last 2 years alone"></outline>
+</outline>
+<outline text="Mining Data Streams"><outline text="The Stream Data Model:  A Data-Stream-Management System,  Examples of Stream Sources, Stream Querie, Issues in Stream Processing."></outline>
+<outline text="Sampling Data in a Stream : Obtaining a Representative Sample , The General Sampling Problem, Varying the Sample Size"></outline>
+<outline text="6.3 Filtering Streams: The Bloom Filter, Analysis."></outline>
+<outline text="6.4 Counting Distinct Elements in a StreamThe Count-Distinct Problem,  The Flajolet-Martin Algorithm, Combining Estimates,  Space Requirements"></outline>
+<outline text="6.5 Counting Ones in a Window: The   Cost   of   Exact   Counts,   The   Datar-Gionis-Indyk-Motwani   Algorithm,Query Answering in the DGIM Algorithm, Decaying Windows"></outline>
+</outline>
+<outline text="Link Analysis"><outline text="PageRank Definition,  Structure of the web, dead ends,  Using Page rank in a search engine, Efficient computation of Page Rank: PageRank Iteration Using MapReduce, Use of Combiners to Consolidate the Result Vector."></outline>
+<outline text="Topic sensitive Page Rank,  link Spam, Hubs and Authorities."></outline>
+</outline>
+<outline text="Frequent Itemsets"><outline text="Handling Larger Datasets in Main Memory"><outline text="Algorithm of Park, Chen, and Yu, The Multistage Algorithm, The Multihash Algorithm."></outline>
+</outline>
+<outline text="The SON Algorithm and MapReduce"></outline>
+<outline text="Counting Frequent Items in a Stream"><outline text="Sampling Methods for Streams, Frequent Itemsets in Decaying Windows"></outline>
+</outline>
+</outline>
+<outline text="Clustering"><outline text="CURE Algorithm"></outline>
+<outline text="Stream-Computing , A Stream-Clustering Algorithm,Initializing  &amp;  Merging Buckets, Answering Queries"></outline>
+</outline>
+<outline text="PCY Algorithm"></outline>
+<outline text="Mining Social-Network Graphs"><outline text="Social Networks as Graphs, Clustering of Social-Network Graphs, Direct Discovery   of   Communities,   SimRank,   Counting   triangles   using   Map-Reduce"></outline>
+</outline>
+<outline text="Tools"><outline text="Google BigTable"><outline text="A high performance NoSQL database service for large analytical and operational workloads"></outline>
+<outline text="powers many core Google services, including Search, Analytics, Maps, and Gmail."></outline>
+<outline text="easily integrates with Hadoop and Hbase"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="SQL (Easy Reads! Structure)"><outline text="SQLite"><outline text="embedded inside the application that makes use of."></outline>
+<outline text="entire database consists of a single file"><outline text="extremely portable"></outline>
+</outline>
+<outline text="Advantage"><outline text="No user management"></outline>
+<outline text="Lack of possibility to tinker with for additional performance"></outline>
+</outline>
+<outline text="When To Use SQLite"><outline text="Embedded applications"></outline>
+<outline text="Disk access replacement"></outline>
+<outline text="Testing"></outline>
+</outline>
+<outline text="When Not To Use SQLite"><outline text="Multi-user applications"></outline>
+<outline text="Applications requiring high write volumes"><outline text="This DBMS allows only one single write*operating to take place at any given time, hence allowing a limited throughput"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="MySQL"><outline text="Advantages"><outline text="Easy to work with:"></outline>
+<outline text="Feature rich:"></outline>
+<outline text="Secure:"></outline>
+<outline text="Scalable and powerful:"></outline>
+<outline text="Speedy:"></outline>
+</outline>
+<outline text="Disadvantage"><outline text="Known limitations:"><outline text="By design, MySQL does not intend to do everything and it comes with functional limitations that some state-of-the-art applications might require."></outline>
+</outline>
+<outline text="Reliability issues:"><outline text="The way certain functionality gets handled with MySQL (e.g. references, transactions, auditing etc.) renders it a little-less reliable compared to some other RDBMSs."></outline>
+</outline>
+<outline text="Stagnated development:"><outline text="Although MySQL is still technical an open-source product, there are complaints regarding the development process since its acquisition. However, it should be noted that there are some MySQL-based, fully-integrated databases that add value on top of the standard MySQL installations (e.g. MariaDB)."></outline>
+</outline>
+</outline>
+<outline text="When To Use MySQL"><outline text="Distributed operations:"></outline>
+<outline text="High security:"></outline>
+<outline text="Web-sites and web-applications:"></outline>
+<outline text="Custom solutions:"></outline>
+</outline>
+<outline text="When Not To Use MySQL"><outline text="SQL compliance:"><outline text="Since MySQL does not [try to] implement the full SQL standard, this tool is not completely SQL compliant. If you might need integration with such RDBMSs, switching from MySQL will not be easy."></outline>
+</outline>
+<outline text="Concurrency:"><outline text="Even though MySQL and some storage engines perform really well with read operations, concurrent read-writes can be problematic."></outline>
+</outline>
+<outline text="Lack of features:"><outline text="Again, depending on the choice of the database-engine, MySQL can lack certain features, such as the full-text search."></outline>
+</outline>
+</outline>
+</outline>
+<outline text="PostgreSQL"><outline text="Advantages of PostgreSQL"><outline text="An open-source SQL standard compliant RDBMS:"></outline>
+<outline text="PostgreSQL is open-source and free, yet a very powerful relational database management system."></outline>
+<outline text="Strong community:"><outline text="PostgreSQL is supported by a devoted and experienced community which can be accessed through knowledge-bases and Q&amp;A sites 24/7 for free."></outline>
+</outline>
+<outline text="Strong third-party support:"><outline text="Regardless of the extremely advanced features, PostgreSQL is adorned with many great and open-source third-party tools for designing, managing and using the management system."></outline>
+</outline>
+<outline text="Extensible:"><outline text="It is possible to extend PostgreSQL programmatically with stored procedures, like an advanced RDBMS should be."></outline>
+</outline>
+<outline text="Objective:"><outline text="PostgreSQL is not just a relational database management system but an objective one - with support for nesting, and more."></outline>
+</outline>
+</outline>
+<outline text="Disadvantages of PostgreSQL"><outline text="Performance:"><outline text="For simple read-heavy operations, PostgreSQL can be an over-kill and might appear less performant than the counterparts, such as MySQL."></outline>
+</outline>
+<outline text="Popularity:"><outline text="Given the nature of this tool, it lacks behind in terms of popularity, despite the very large amount of deployments - which might affect how easy it might be possible to get support."></outline>
+</outline>
+<outline text="Hosting:"><outline text="Due to above mentioned factors, it is harder to come by hosts or service providers that offer managed PostgreSQL instances."></outline>
+</outline>
+</outline>
+<outline text="When To Use PostgreSQL"><outline text="Data integrity:"><outline text="When reliability and data integrity are an absolute necessity without excuses, PostgreSQL is the better choice."></outline>
+</outline>
+<outline text="Complex, custom procedures:"><outline text="If you require your database to perform custom procedures, PostgreSQL, being extensible, is the better choice."></outline>
+</outline>
+<outline text="Integration:"><outline text="In the future, if there is a chance of necessity arising for migrating the entire database system to a propriety (e.g. Oracle) solution, PostgreSQL will be the most compliant and easy to handle base for the switch."></outline>
+</outline>
+<outline text="Complex designs:"><outline text="Compared to other open-source and free RDBMS implementations, for complex database designs, PostgreSQL offers the most in terms of functionality and possibilities without giving up on other valuable assets."></outline>
+</outline>
+</outline>
+<outline text="When Not To Use PostgreSQL"><outline text="Speed:"><outline text="If all you require is fast read operations, PostgreSQL is not the tool to go for."></outline>
+</outline>
+<outline text="Simple set ups:"><outline text="Unless you require absolute data integrity, ACID compliance or complex designs, PostgreSQL can be an over-kill for simple set-ups."></outline>
+</outline>
+<outline text="Replication:"><outline text="Unless you are willing to spend the time, energy and resources, achieving replication with MySQL might be simpler for those who lack the database and system administration experience."></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Challenges of RDBMS"><outline text="a well-defined structure of data and assumes that the data is largely uniform."></outline>
+<outline text="the schema defined up-front before building the application."><outline text="does not match well with the agile development approaches for highly dynamic applications"></outline>
+</outline>
+<outline text="As the data starts to grow larger, you have to scale your database vertically, i.e. adding more capacity to the existing servers."></outline>
+</outline>
+</outline>
+<outline text="NoSQL (Apply Structure by not upfront)"><outline text="What is NoSQL?"><outline text="database provides a mechanism for storage and retrieval of data that is modeled in means other than the tabular relations used in relation databases (RDBMS)"></outline>
+</outline>
+<outline text="Benefits of NoSQL over RDBMS"><outline text="Schema Less"><outline text="do not define any strict data structure."></outline>
+</outline>
+<outline text="Dynamic and Agile:"><outline text="have good tendency to grow dynamically with changing requirements."></outline>
+<outline text="can handle structured, semi-structured and unstructured data."></outline>
+</outline>
+<outline text="Scales Horizontally"><outline text="scales horizontally by adding more servers and using concepts of sharding and replication."></outline>
+<outline text="fits with the cloud computing services such as Amazon Web Services (AWS) which allows you to handle virtual servers which can be expanded horizontally on demand"></outline>
+</outline>
+<outline text="Better Performance"><outline text="All the NoSQL databases claim to deliver better and faster performance as compared to traditional RDBMS implementations."></outline>
+</outline>
+<outline text="Some of these databases do not support ACID transactions while some of them might be lacking in reliability. But each one of them has their own strengths due to which they are well suited for specific requirements."></outline>
+</outline>
+<outline text="NoSQL business drivers;"></outline>
+<outline text="Types"><outline text="Key-value stores"><outline text="unique value in the set and can be easily looked up to access the data"></outline>
+<outline text="Membase, Redis, MemcacheDB, Oracle’s Berkeley DB."></outline>
+</outline>
+<outline text="Graph stores"><outline text="uses graph structures with nodes, edges, and properties to represent and store data"></outline>
+<outline text="every element contains a direct pointer to its adjacent element and no index lookups are necessary"></outline>
+<outline text="Neo4j, OrientDB, Facebook Open Graph, FlockDB"></outline>
+</outline>
+<outline text="Column family (Bigtable) stores"><outline text="avoids consuming space when storing nulls by simply not storing a column when a value doesn’t exist for that column."></outline>
+<outline text="unit of data can be thought of as a set of key/value pairs, where the unit itself is identified with the help of a primary identifier, often referred to as the primary key"></outline>
+<outline text="BigTable, CouchDB, OrientDB"></outline>
+</outline>
+<outline text="Document stores"><outline text="treat a document as a whole and avoid splitting a document in its constituent name/value pairs"></outline>
+<outline text="allow indexing of documents on the basis of not only its primary identifier but also its properties"></outline>
+<outline text="MongoDB, HBase, Cassandra, Amazon SimpleDB, Hypertable"></outline>
+</outline>
+<outline text="Hybrid Cache Store"></outline>
+<outline text="When you suggest a specific data architecture pattern as a solution to a business problem, you should use a consistent process that allows you to name the pattern, describe how it applies to the current business problem, and articulate the pros and cons of the proposed solution."></outline>
+</outline>
+<outline text="Characteristics of NoSQL"><outline text="It’s more than rows in table"><outline text="many formats"></outline>
+</outline>
+<outline text="It’s free of joins"><outline text="allow you to extract your data using simple interfaces without joins"></outline>
+</outline>
+<outline text="It’s schema-free"><outline text="allow you to drag-and-drop your data into a folder and then query it without creating an entity-relational model"></outline>
+</outline>
+<outline text="It works on many processors"><outline text="allow you to store your database on multiple processors and maintain high-speed performance"></outline>
+</outline>
+<outline text="It uses shared-nothing commodity computers"><outline text="Most (but not all) NoSQL systems leverage low-cost commodity processors that have separate RAM and disk."></outline>
+</outline>
+<outline text="It supports linear scalability"><outline text="When you add more processors, you get a consistent increase in performance."></outline>
+</outline>
+<outline text="It’s innovative"><outline text="NoSQL offers options to a single way of storing, retrieving, and manipulating data. NoSQL supporters (also known as NoSQLers) have an inclusive"></outline>
+</outline>
+<outline text="attitude about NoSQL and recognize SQL solutions as viable options. To the NoSQL community, NoSQL means “Not only SQL.”"></outline>
+</outline>
+<outline text="Using NoSQL to manage big data"></outline>
+<outline text="Analyzing big data with ashared-nothing architecture; Choosing distribution models: master-slaveversus peer-to-peer;   Four ways that NoSQL systems handle big dataproblems"></outline>
+</outline>
+<outline text="Easy Writes! Unstructured"><outline text="Core"><outline text="Store in HDFS" _note="Hadoop Distributed File System"><outline text="Can store any form of data"><outline text="structured"></outline>
+<outline text="unstructured"><outline text="Store the data in raw format, then manipulate later"></outline>
+</outline>
+</outline>
+<outline text="looks like a single unit."></outline>
+<outline text="Distributed filesystem"><outline text="NameNode"><outline text="contains metadata"><outline text="maintaining the log file about the stored data"></outline>
+</outline>
+<outline text="helps us in storing our data across various nodes"><outline text="internally sends a request to the client to store and replicate data on various DataNodes."></outline>
+</outline>
+<outline text="it requires less storage and high computational resources"></outline>
+</outline>
+<outline text="DataNode"><outline text="stores data"></outline>
+<outline text="are commodity hardware"></outline>
+</outline>
+</outline>
+<outline text="Rack Awareness"><outline text="policy minimizes the write cost, maximizing read speed and improve network traffic"></outline>
+<outline text="NameNode"><outline text="maintaining  rack ids of each data node"></outline>
+<outline text="chooses data nodes which are on the same rack or a near by rack to read/write request"></outline>
+</outline>
+<outline text="A default Hadoop installation assumes all the nodes belong to the same rack."></outline>
+<outline text="Replica placement"><outline text="A simple policy is to place replicas across racks."><outline text="prevents losing data when an entire rack fails"></outline>
+<outline text="make use of bandwidth from multiple racks when reading a file."></outline>
+</outline>
+<outline text="On Multiple rack cluster"><outline text="block replications are maintained with a policy that no more than one replica is placed on one node and no more than two replicas are placed in the same rack with a constraint that number of racks used for block replication should be always less than total no of block replicas."></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Process with MapReduce"><outline text="Process HDFS as if it was on a single server"><outline text="distributed across cluster"></outline>
+<outline text="parallel"></outline>
+</outline>
+<outline text="2 functions"><outline text="Map"><outline text="performs actions like filtering, grouping and sorting"></outline>
+<outline text="output is key value pair"></outline>
+</outline>
+<outline text="Reduce"><outline text="aggregates and summarizes the result produced by map function"></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Ecosystem" _note="Hadoop/HDFS has a lively ecosystem"><outline text="Hive"><outline text="let you write SQL that gets turned into Map/Reduce code"></outline>
+</outline>
+<outline text="Pig"><outline text="Another query language converted to Map/Reduce"></outline>
+</outline>
+<outline text="Impala"><outline text="Query your data with SQL directly accessing HDFS (bypassing compile to Map/Reduce)"></outline>
+</outline>
+<outline text="Sqoop/Flume"><outline text="Puts data into cluster in relational db format"></outline>
+</outline>
+<outline text="HBase"><outline text="Real-time NoSQL DB built on HDFS"></outline>
+</outline>
+<outline text="Others"><outline text="YARN"><outline text="Yet Another Resource Negotiator"></outline>
+</outline>
+<outline text="Spark"><outline text="In-memory Data Processing"></outline>
+</outline>
+<outline text="Mahout, Spark MLlib"><outline text="Machine Learning"></outline>
+</outline>
+<outline text="Apache Drill"><outline text="SQL on Hadoop"></outline>
+</outline>
+<outline text="Zookeeper"><outline text="Managing Cluster"></outline>
+</outline>
+<outline text="Oozie"><outline text="Job Scheduling"></outline>
+</outline>
+<outline text="Flume, Sqoop"><outline text="Data Ingesting Services"></outline>
+</outline>
+<outline text="Solr &amp; Lucene"><outline text="Searching &amp; Indexing"></outline>
+</outline>
+<outline text="Ambari"><outline text="Provision, Monitor and Maintain cluster"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Map-Reduce"><outline text="Distributed File Systems"><outline text="Physical Organization of Compute Nodes, Large-Scale File-System Organization"></outline>
+</outline>
+<outline text="Phases"><outline text="Input Phase"><outline text="Here we have a Record Reader that translates each record in an input file and sends the parsed data to the mapper in the form of key-value pairs."></outline>
+</outline>
+<outline text="Map"><outline text="user-defined function"></outline>
+<outline text="takes in input data"></outline>
+<outline text="output is key value pair"></outline>
+</outline>
+<outline text="Intermediate Keys"><outline text="key-value pairs generated by the mapper"></outline>
+</outline>
+<outline text="Combiner"><outline text="summarizes the Mapper output record with the same Key before passing to the Reducer"><outline text="is a type of local Reducer that groups similar data from the map phase into identifiable sets"></outline>
+</outline>
+<outline text="runs on the Mapper machine itself"></outline>
+<outline text="not part of the main MapReduce algorithm; it is optional."></outline>
+<outline text="Combiners,  Details of MapReduce Execution, Coping With Node Failures"></outline>
+<outline text="Advantages"><outline text="reduces the time taken for data transfer between mapper and reducer."></outline>
+<outline text="decreases the amount of data that needed to be processed by the reducer."></outline>
+<outline text="Combiner improves the overall performance of the reducer."></outline>
+</outline>
+<outline text="Disadvantages"><outline text="MapReduce jobs cannot depend on the Hadoop combiner execution because there is no guarantee in its execution."></outline>
+<outline text="In the local filesystem, the key-value pairs are stored in the Hadoop and run the combiner later which will cause expensive disk IO."></outline>
+</outline>
+</outline>
+<outline text="Shuffle and Sort"><outline text="The Reducer task starts with the Shuffle and Sort step."></outline>
+<outline text="It downloads the grouped key-value pairs onto the local machine, where the Reducer is running."></outline>
+<outline text="The individual key-value pairs are sorted by key into a larger data list."></outline>
+<outline text="The data list groups the equivalent keys together so that their values can be iterated easily in the Reducer task."></outline>
+</outline>
+<outline text="Reducer"><outline text="takes the grouped key-value paired data as input and runs a Reducer function on each one of them."></outline>
+<outline text="gives zero or more key-value pairs to the final step."></outline>
+</outline>
+<outline text="Output Phase"><outline text="write onto a file using a record writer."></outline>
+</outline>
+</outline>
+<outline text="Algorithms"><outline text="Matrix-Vector Multiplication by MapReduce"></outline>
+<outline text="Computing Projections by MapReduce,  Union, Intersection, and Difference by MapReduce, Computing Natural Join by MapReduce, Grouping and Aggregation by MapReduce,  Matrix Multiplication, Matrix Multiplication with One MapReduce Step."></outline>
+<outline text="Tokenize"><outline text="Tokenizes the tweets into maps of tokens and writes them as key-value pairs."></outline>
+</outline>
+<outline text="Filter"><outline text="Filters unwanted words from the maps of tokens and writes the filtered maps as key-value pairs."></outline>
+</outline>
+<outline text="Count"><outline text="Generates a token counter per word."></outline>
+</outline>
+<outline text="Aggregate Counters"><outline text="Prepares an aggregate of similar counter values into small manageable units."></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Limitations"><outline text="Issue with Small Files"><outline text="not suited for small data"></outline>
+<outline text="HDFS lacks the ability to efficiently support the random reading of small files because of its high capacity design."></outline>
+</outline>
+<outline text="Slow Processing Speed"><outline text="MapReduce requires a lot of time to perform these tasks thereby increasing latency"></outline>
+</outline>
+<outline text="Support for Batch Processing only;  No Real-time Data Processing"><outline text="does not process streamed data, and hence overall performance is slower"></outline>
+</outline>
+<outline text="No Delta Iteration"><outline text="not so efficient for iterative processing, as Hadoop does not support cyclic data flow"><outline text="(i.e. a chain of stages in which each output of the previous stage is the input to the next stage)"></outline>
+</outline>
+</outline>
+<outline text="Latency"><outline text="multiple data conversions"></outline>
+</outline>
+<outline text="Not Easy to Use"><outline text="No Abstraction"><outline text="does not have any type of abstraction"></outline>
+<outline text="hand code for each and every operation which makes it very difficult to work."></outline>
+</outline>
+<outline text="need to hand code for each and every operation which makes it very difficult to work"></outline>
+</outline>
+<outline text="Security"><outline text="At storage and network levels, Hadoop is missing encryption"></outline>
+<outline text="supports Kerberos authentication, which is hard to manage."></outline>
+<outline text="Vulnerable by Nature"><outline text="entirely written in java"></outline>
+<outline text="been most heavily exploited by cyber criminals and as a result, implicated in numerous security breaches."></outline>
+</outline>
+<outline text="supports access control lists (ACLs) and a traditional file permissions model."></outline>
+<outline text="third party vendors have enabled an organization to leverage Active Directory Kerberos and LDAP for authentication."></outline>
+</outline>
+<outline text="No Caching"><outline text="not efficient for caching"></outline>
+<outline text="cannot cache the intermediate data in memory for a further requirement which diminishes the performance of Hadoop."></outline>
+</outline>
+<outline text="Lengthy Line of Code"><outline text="Hadoop has 1,20,000 line of code, the number of lines produces the number of bugs and it will take more time to execute the program."></outline>
+</outline>
+<outline text="Uncertainty"><outline text="only ensures that data job is complete"></outline>
+<outline text="unable to guarantee when the job will be complete."></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Extra Concepts"><outline text="Data Wrangling / Data Munching" _note="dealing with and or converting missing or ill-formatted data into a format that more easily lends itself to analysis&#10;restructure your dataset into a format that algorithms can handle."><outline text="Sanity Check"><outline text="Does the data make sense?"></outline>
+<outline text="Is there a problem?"></outline>
+<outline text="Does the data look like I expect it to?"></outline>
+</outline>
+<outline text="Acquiring Data"><outline text="API"></outline>
+<outline text="finding the right file somewhere on the internet and downloading it"></outline>
+<outline text="web scraping"></outline>
+</outline>
+<outline text="Common Data Format"><outline text="CSV"><outline text=""></outline>
+</outline>
+<outline text="XML"></outline>
+<outline text="Json" _note="import json&#10;convert json into dictionary:&#10;json.loads(data)"></outline>
+<outline text="SQL"><outline text="Relational Databases"><outline text="Advantage"><outline text="straightforward to extract aggregated data with complex filters"></outline>
+<outline text="scales well"></outline>
+<outline text="ensures all data is consistently formatted"></outline>
+</outline>
+<outline text="Schema"><outline text="blueprint that tells the database" _note="how we plan to store our data"></outline>
+</outline>
+</outline>
+<outline text="Functions"><outline text="Aggregate"><outline text="MIN"></outline>
+<outline text="MAX"></outline>
+<outline text="SUM"></outline>
+<outline text="AVG"></outline>
+<outline text="COUNT"></outline>
+<outline text="COUNT(*)"></outline>
+</outline>
+<outline text="Date and Time"><outline text="strftime"></outline>
+</outline>
+<outline text="Conversion of types"><outline text="cast(variable as type)"></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Federated Learning" _note="A Your phone personalizes the model locally, based on your usage&#10;B Many users&apos; updates are aggregated&#10;C to form a consensus change to the shared model, after which the procedure is repeated."></outline>
+<outline text="Why GPU’s are important"><outline text="CPU"><outline text="Made from sequential execution"></outline>
+<outline text="Meant for general computing tasks"></outline>
+<outline text="Usually don’t have more than 12 cores"></outline>
+</outline>
+<outline text="GPU"><outline text="Made to run parallel"></outline>
+<outline text="Could have thousand of core"></outline>
+<outline text="Current best"></outline>
+<outline text=""></outline>
+</outline>
+<outline text="Local GPUs"><outline text="Most Cost Effecient"></outline>
+<outline text="High Maintenance"></outline>
+</outline>
+</outline>
+<outline text="Train Model in the cloud"><outline text="AWS"><outline text="On Demand"></outline>
+<outline text="Reserved"></outline>
+<outline text="Spot Instances"><outline text="Cheapest"></outline>
+</outline>
+<outline text="Complicated"></outline>
+<outline text="More services"></outline>
+<outline text=""></outline>
+</outline>
+<outline text="Google Cloud"><outline text="Cheap"></outline>
+<outline text=""></outline>
+<outline text="Easy to use"></outline>
+<outline text=""></outline>
+</outline>
+<outline text="FloydHub"><outline text="Best For beginners"></outline>
+<outline text="Offers 100 hours free"></outline>
+<outline text="Per second unit charge"></outline>
+</outline>
+</outline>
+<outline text="human Bias in ML"><outline text="Interaction" _note="Human interacting only suggest certain shoes"></outline>
+<outline text="Latent" _note="Only one type"></outline>
+<outline text="Selection" _note="Are we selecting all posible data"></outline>
+</outline>
+<outline text="Genetic Algorithms"><outline text="Optimization technique used to solve non-linear/non-differential"></outline>
+<outline text="uses concept from evolutionary biology"></outline>
+<outline text=""></outline>
+<outline text="selection"><outline text="select just because they perfomed well in previous generation"></outline>
+</outline>
+<outline text="crossover"><outline text="common similarities between selection"></outline>
+</outline>
+<outline text="mutation"><outline text="parent -&gt; mutate to random values"></outline>
+<outline text="allows to not fall into local minima and explore solution space well"></outline>
+</outline>
+<outline text="continue process until convergence (stopping) criteria are met"><outline text="fixed number of generations"></outline>
+<outline text="best fitness function value is no longer changing or changing by very small value"></outline>
+</outline>
+</outline>
+<outline text="Kernel" _note="A kernel is a similarity function.&#10;It is a function that you, as the domain expert, provide to a machine learning algorithm.&#10;It takes two inputs and spits out how similar they are.&#10;Suppose your task is to learn to classify images. You have (image, label) pairs as training data. Consider the typical machine learning pipeline: you take your images, you compute features, you string the features for each image into a vector, and you feed these &quot;feature vectors&quot; and labels into a learning algorithm.&#10;Data --&gt; Features --&gt; Learning algorithm&#10;Kernels offer an alternative. Instead of defining a slew of features, you define a single kernel function to compute similarity between images. You provide this kernel, together with the images and labels to the learning algorithm, and out comes a classifier.&#10;Of course, the standard SVM/ logistic regression/ perceptron formulation doesn&apos;t work with kernels : it works with feature vectors. How on earth do we use kernels then? Two beautiful mathematical facts come to our rescue:&#10;Under some conditions, every kernel function can be expressed as a dot product in a (possibly infinite dimensional) feature space ( Mercer&apos;s theorem ).&#10;Many machine learning algorithms can be expressed entirely in terms of dot products.&#10;These two facts mean that I can take my favorite machine learning algorithm, express it in terms of dot products, and then since my kernel is also a dot product in some space, replace the dot product by my favorite kernel. Voila!"><outline text="Why kernels?" _note="Why kernels, as opposed to feature vectors? One big reason is that in many cases, computing the kernel is easy, but computing the feature vector corresponding to the kernel is really really hard. The feature vector for even simple kernels can blow up in size, and for kernels like the RBF kernel ( k(x,y) = exp( -||x-y||^2), see Radial basis function kernel) the corresponding feature vector is infinite dimensional. Yet, computing the kernel is almost trivial.&#10;Many machine learning algorithms can be written to only use dot products, and then we can replace the dot products with kernels. By doing so, we don&apos;t have to use the feature vector at all. This means that we can work with highly complex, efficient-to-compute, and yet high performing kernels without ever having to write down the huge and potentially infinite dimensional feature vector. Thus if not for the ability to use kernel functions directly, we would be stuck with relatively low dimensional, low-performance feature vectors. This &quot;trick&quot; is called the kernel trick ( Kernel trick ).&#10;I want to clear up two confusions which seem prevalant on this page:"></outline>
+<outline text="A function that transforms one feature vector into a higher dimensional feature vector is not a kernel function. Thus f(x) = [x, x^2 ] is not a kernel. It is simply a new feature vector. You do not need kernels to do this. You need kernels if you want to do this, or more complicated feature transformations without blowing up dimensionality."></outline>
+<outline text="A kernel is not restricted to SVMs. Any learning algorithm that only works with dot products can be written down using kernels. The idea of SVMs is beautiful, the kernel trick is beautiful, and convex optimization is beautiful, and they stand quite independent."></outline>
+</outline>
+<outline text="Memory-Based Learning"><outline text="Cross-validation is very efficient"></outline>
+<outline text="The runtime cost scales with training data"></outline>
+<outline text="Training is fast"></outline>
+<outline text="Training is fast"></outline>
+<outline text="In memory based learning no global model is learnt, during testing the distance of the test point is computed from the training/ reference points and the class of the test point is determined"></outline>
+</outline>
+<outline text="ML"><outline text="Inductive Bias"><outline text="Assumptions that get us to generelization"></outline>
+<outline text="Language"><outline text="eg: only considering straight line"></outline>
+</outline>
+<outline text="Search"><outline text="how do you search among the possible classifiers in language in order to find the right one"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Basic Maths Required"><outline text="Statistics"><outline text="Descriptive Statistics"><outline text="Mean"></outline>
+<outline text="Median"></outline>
+<outline text="summarize the observed data"></outline>
+<outline text="Mode"></outline>
+<outline text="Variability (standard deviation)"></outline>
+</outline>
+<outline text="Inferential Statistics"><outline text="enables us to infer (conclude) properties about a population based on a sample data set"><outline text="form conclusions beyond the collected data"></outline>
+</outline>
+<outline text="heavily used when"><outline text="analyzing an experiment such as an A/B test"></outline>
+<outline text="comparing conversion rates"></outline>
+</outline>
+</outline>
+<outline text="Know Thy Distributions." _note="you should have a good intuition of what distribution is used for what.  Given some data, you should be able to do something like this for many scenarios:&#10;Q: Is my data well-modeled by a Pareto? A: No, the empirical histogram is not monotonically decreasing.  Q: A Gaussian of course! A: Nope, there aren&apos;t any negative values.   Q: How about the Exponential? A: No, there are no zeros.   Q: OK, uh, the von Mises? A: Don&apos;t be silly, I&apos;m pretty sure this data doesn&apos;t reside on the surface of a circle... Q: The log-normal! A: That sounds good.  Better plot it and see..."></outline>
+</outline>
+<outline text="NPTEL Data Analysis"><outline text="Variable Types"><outline text="Categorical / Qualitative" _note="Always Discrete"><outline text="Ordinal"><outline text="Some order"><outline text="Low to High"></outline>
+<outline text="High to Low"></outline>
+</outline>
+</outline>
+<outline text="Nominal"><outline text="No order"></outline>
+</outline>
+</outline>
+<outline text="Numerical / Quantitative"><outline text="Discrete"></outline>
+<outline text="Continuos"></outline>
+</outline>
+</outline>
+<outline text="Descriptive Statistics" _note="describing the data you have at hand&#10;no conclusions beyond the data at hand&#10;aka Summary statistics&#10;Describing"><outline text="Summarising Data Through Numbers" _note="Describing data with numbers"><outline text="Central Tendency"><outline text="Mean"><outline text="Good when outliers are important"></outline>
+</outline>
+<outline text="Median"><outline text="middle most element when arranges in order"></outline>
+<outline text="Not effected much by outliers"></outline>
+</outline>
+<outline text="Mode"><outline text="Useful with Nominal Variables"></outline>
+<outline text="element which is repeated most"></outline>
+<outline text="Multi modal distribution"><outline text="Many peaks in distribution"></outline>
+</outline>
+</outline>
+<outline text="Measure of central value"></outline>
+</outline>
+<outline text="Skew and Kurtosis"><outline text="Skewness"><outline text="Shape of the distribution"></outline>
+<outline text="Distribution leans more to one side than another"></outline>
+</outline>
+<outline text="Kurtosis"><outline text="How fat are the tails of the distribution"></outline>
+</outline>
+</outline>
+<outline text="Outliers"><outline text="Bad Outlier"><outline text="Errors"></outline>
+<outline text="Do not provide realistic story"></outline>
+</outline>
+<outline text="Good Outlier"><outline text="The story is in the outlier"></outline>
+</outline>
+</outline>
+<outline text="Dispersion"><outline text="How are data dispersed (deviate) around central value?"></outline>
+<outline text="Measures of Dispersion"><outline text="Range"><outline text="Max-Min"></outline>
+</outline>
+<outline text="Inter Quartile Range"></outline>
+</outline>
+<outline text="Standard Deviation"><outline text="on Population" _note="Complete Data"><outline text="When true mean is given"></outline>
+</outline>
+<outline text="on Sample"><outline text="Taken on a sample of data from data generated"></outline>
+</outline>
+<outline text="Related Question"><outline text="Why do we use the square function on the deviations? What are it’s implications?"><outline text="adding positive and negative values will start cancelling one another"></outline>
+</outline>
+<outline text="Why do we work on standard deviation and not the variance?"><outline text="if you use variance you will have to show a value that is square"></outline>
+<outline text="Example - Rs Square"><outline text="which makes no sense"></outline>
+</outline>
+<outline text="therefore standard deviation is more intuitive"></outline>
+</outline>
+<outline text="Why do we average by N-1 and not N?"><outline text="sum of deviations is always 0 and so the last deviation, can be found if we know n-1 deviations"></outline>
+<outline text="Only the n-1 squared deviations can vary freely"></outline>
+<outline text="We are not averaging n unrelated numbers we are only averaging N-1 Squared Deviations"></outline>
+<outline text="Similar is the concept of degrees of freedom"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Mean Absolute Deviation"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Distinguishing factor between a regular variable and Random Variable"><outline text="random var"><outline text="even if you fix all externalities it can still take a set of possible values and set could be every large set or even infinite."></outline>
+<outline text="you cannot reduce the variable beyond that"></outline>
+<outline text="therefore you have to describe the variable using probability state space"></outline>
+</outline>
+<outline text="regular var"><outline text="once you fit all externalities then variable takes on a specific value"></outline>
+</outline>
+</outline>
+<outline text="Probability Distributions" _note="Check if random data that is being generated is in accordance to some probability distribution&#10;Describing the data&#10;aka&#10;mathematical function describing randomness"><outline text="Random Variables"><outline text="A variable whose values are subjected to randomness"></outline>
+<outline text="Difference between Random Variable and Regular Variable"><outline text="for random variable"><outline text="set could be finite or infinite"></outline>
+<outline text="even if all externalities are fixed, variable could take a set of possible values"></outline>
+<outline text="each of those values have specific probability associated with it."></outline>
+<outline text="You cannot reduce the variable"><outline text="so you have to describe the value of the variable with probability state space"></outline>
+</outline>
+</outline>
+<outline text="for regular variables"><outline text="if you fix all externalities the variables takes a specific number"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Discrete Probability Distribution"><outline text="Bernoulli Distribution" _note="only 2 possible outcomes"><outline text="x percent chance" _note="Probability that something happens is x&#10;the probability that it would not happen is 1-x&#10;p = 1-q"></outline>
+</outline>
+<outline text="Discrete Uniform Distribution" _note="6 possible outcomes where probability of each is 1/6&#10;Possible outcome is 1,2,3,4,5,6"></outline>
+<outline text="Defining a discrete distribution" _note="Choosing to define probability distribution based on what you have in the data&#10;If you don’t assume that anything, and then describe the random variable which is heads or tails which the actual data that you see"></outline>
+<outline text="Binomial Distribution"><outline text="What is probability of getting k success amoung n possibles outcomes?"></outline>
+<outline text="quantifing the probability of getting k successes out of n trials of a bernoulli process"></outline>
+</outline>
+<outline text="Poisson Distribution"><outline text="Probability of getting x occurences over a certain time or space"></outline>
+<outline text="Lamda is a number"><outline text="usually represents average rate"><outline text="exxample 3 people are arriving per minute"></outline>
+</outline>
+</outline>
+<outline text="k is value of interest"><outline text="k can go all the way upto infinity"></outline>
+<outline text="possible values that k can take is always greater than 0"></outline>
+</outline>
+</outline>
+<outline text="Geometric"><outline text="Looks at inter"></outline>
+</outline>
+<outline text="Exponential"><outline text="Memoryless"><outline text="probability that a bulb will fail between year 1 and 2 and between year 5 and 6 is same if i tell you at the start of year 1 and 5 that the buld has not failed"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Continuous Probability Distribution" _note="you cannot add up all the probabilities because they are infinite&#10;null = nullifiable&#10;Analysis Of Variance&#10;degree of freedom for variance within the group&#10;degree of freedom for variance between the group&#10;For each PDF, a CDF exists&#10;Describes cumulative probability upto a certain point"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Get the data"></outline>
+<outline text="Tip"><outline text="Always call hypothesis as predicted"></outline>
+</outline>
+<outline text="" _note="How to fit Multi-Step Preprocessing Pipelines into cross-validation loops to ensure robust results.&#10;How to deal with the Curse of Dimensionality.&#10;How to implement Principle Component Analysis (PCA) and how to interpret your components.&#10;How to deal with Unbalanced Classes.&#10;How to use Probability Thresholds and ROC Curves to improve your classification models.&#10;How to perform Multi-Layer Groupbys for data wrangling.&#10;How to make Advanced Visualizations for presentations and reports."></outline>
+<outline text="Hypothesis Space"><outline text="If there are 4 (N) input features, there are 2_16 2__2_𝑁_  possible Boolean functions."></outline>
+<outline text="The space of all hypotheses that can, in principle, be output by a learning algorithm."><outline text="We can think about a supervised learning machine as a device that explores a “hypothesis space”."></outline>
+<outline text="Each setting of the parameters in the machine is a different hypothesis about the function that maps input vectors to output vectors."></outline>
+</outline>
+<outline text="We cannot figure out which one is correct unless we see every possible input-output pair  2_4(2_𝑁)"></outline>
+</outline>
+<outline text="Inductive Bias" _note="Which hypothesis will the algorithm prefer"><outline text="Need to make assumptions"></outline>
+<outline text="Experience alone doesn’t allow us to make conclusions about unseen data instances"></outline>
+</outline>
+<outline text="Induction"><outline text="specifics to general rules"></outline>
+<outline text="Inductive Learning"><outline text="learning from example"><outline text="Occam’s Razor"><outline text="Given several possible explanations, the simplest one is probably the right one."></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Bias while makeing ML Algorithms"><outline text="Preference Bias"><outline text="what sort of hypothesis from this hypothesis space, we prefer" _note="Impose ordering on hypothesis space"></outline>
+</outline>
+<outline text="Restriction Bias"><outline text="Hypothesis space you care about" _note="Limit the hypothesis space"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Applications"><outline text="Projects"><outline text="Kaggle" _note="https://www.analyticsvidhya.com/blog/2015/06/start-journey-kaggle/"><outline text="Titanic Dataset" _status="checked"></outline>
+<outline text="First Step with Julia" _status="unchecked"></outline>
+<outline text="Digit Recognizer" _status="unchecked"></outline>
+<outline text="Denoising Dirty Documents" _status="unchecked"></outline>
+<outline text="Bag of Words meet Bag of Popcorn" _status="unchecked"></outline>
+<outline text="Taxi Trajectory Prediction Time / Location" _status="unchecked"></outline>
+<outline text="Facebook Recruiting – Human or bot" _status="unchecked"></outline>
+</outline>
+<outline text="Others"><outline text="Iris DataSet" _status="unchecked"></outline>
+<outline text="Mnist Dataset" _status="unchecked"></outline>
+</outline>
+<outline text="Gamebot"><outline text="Play Agar.io" _status="unchecked"></outline>
+</outline>
+</outline>
+<outline text="Text Learning"><outline text="algorithms cannot work with raw text directly"><outline text="text must be converted into numbers"></outline>
+<outline text="Specifically, vectors of numbers."></outline>
+</outline>
+<outline text="Stop Words"><outline text="low information words"></outline>
+<outline text="and, the, I, you, have"></outline>
+</outline>
+<outline text="Bag of Words" _note="from sklearn.feature_extraction.text import CountVectorizer&#10;vector = CountVectorizer()&#10;s1 = &quot;Hi my name is Ankush&quot;&#10;s2 = &quot;Hi my name is Sakshi Babu I am Ankush sister&quot;&#10;s3 = &quot;Hi I am super Saiyan god&quot;&#10;email = [s1, s2, s3]&#10;bag_of_words = vector.fit(email)&#10;bag_of_words = vector.transform(email)&#10;bag_of_words&#10;&lt;3x12 sparse matrix of type &apos;&lt;type &apos;numpy.int64&apos;&gt;&apos;&#10;with 19 stored elements in Compressed Sparse Row format&gt;&#10;print bag_of_words&#10;(0, 1)	1&#10;(0, 4)	1&#10;(0, 5)	1&#10;(0, 6)	1&#10;(0, 7)	1&#10;(1, 0)	1&#10;(1, 1)	1&#10;(1, 2)	1&#10;(1, 4)	1&#10;(1, 5)	1&#10;(1, 6)	1&#10;(1, 7)	1&#10;(1, 9)	1&#10;(1, 10)	1&#10;(2, 0)	1&#10;(2, 3)	1&#10;(2, 4)	1&#10;(2, 8)	1&#10;(2, 11)	1&#10;print vector.vocabulary_.get(&quot;Hi&quot;)&#10;None&#10;print vector.vocabulary_.get(&quot;Ankush&quot;)&#10;None"><outline text="documents are similar if they have similar content"></outline>
+<outline text="Properties"><outline text="Word Order Does not Matter"></outline>
+<outline text="Cannot handle complex phrases like “Chicago Bulls”"><outline text="No Meaning"></outline>
+</outline>
+<outline text="Long phrases give different input vector"></outline>
+</outline>
+<outline text="Design vocabulary of known words."><outline text="make a list of all of the unique words in our model vocabulary."></outline>
+<outline text="Clean"><outline text="Ignoring case"></outline>
+<outline text="Ignoring punctuation"></outline>
+<outline text="Ignoring frequent words that don’t contain much information, called stop words, like “a,” “of,” etc."></outline>
+<outline text="Fixing misspelled words."></outline>
+<outline text="Reducing words to their stem (e.g. “play” from “playing”) using stemming algorithms."></outline>
+</outline>
+<outline text="Grams"><outline text="A more sophisticated approach is to create a vocabulary of grouped words"></outline>
+<outline text="bigram model"><outline text="Creating a vocabulary of two-word pairs"><outline text="“it was”"></outline>
+<outline text="“was the”"></outline>
+<outline text="“the best”"></outline>
+<outline text="“best of”"></outline>
+<outline text="“of times”"></outline>
+</outline>
+<outline text="a bag-of-bigrams representation is much more powerful than bag-of-words, and in many cases proves very hard to beat."></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Scoring Words: A measure of the presence of known words."><outline text="Counts"><outline text="Count the number of times each word appears in a document."></outline>
+</outline>
+<outline text="Frequencies"><outline text="Calculate the frequency that each word appears in a document out of all the words in the document."></outline>
+</outline>
+</outline>
+<outline text="Steps"><outline text="Step 3: Create Document Vectors"><outline text="we know the vocabulary has 10 words, we can use a fixed-length document representation of 10, with one position in the vector to score each word."></outline>
+<outline text="simplest scoring method is to mark the presence of words as a boolean value, 0 for absent, 1 for present."></outline>
+</outline>
+</outline>
+</outline>
+<outline text="TF-IDF"><outline text="A problem with scoring word frequency is that highly frequent words start to dominate in the document"><outline text="but may not contain as much “informational content” to the model as rarer but perhaps domain specific words."></outline>
+</outline>
+<outline text="rescale the frequency of words by how often they appear in all documents,"></outline>
+<outline text="so that the scores for frequent words like “the” that are also frequent across all documents are penalized."></outline>
+<outline text="Term Frequency – Inverse Document Frequency"><outline text="Term Frequency: is a scoring of the frequency of the word in the current document."></outline>
+<outline text="Inverse Document Frequency: is a scoring of how rare the word is across documents."></outline>
+</outline>
+<outline text="The scores are a weighting where not all words are equally as important or interesting."></outline>
+<outline text="The scores have the effect of highlighting words that are distinct (contain useful information) in a given document."></outline>
+<outline text="Thus the idf of a rare term is high, whereas the idf of a frequent term is likely to be low."></outline>
+</outline>
+</outline>
+<outline text="Natural Language Processing (NLP)" _note="extracting structure, grammar, and insights from text."><outline text="Sentimental Analysis"></outline>
+<outline text="Spam"></outline>
+<outline text="Jeopardy"></outline>
+</outline>
+<outline text="Image Processing"><outline text="Face Detection"></outline>
+</outline>
+<outline text="Time Series Analysis" _note="deals with data series that are indexed by time. For example, stock prices, precipitation amounts, and Twitter hashtags by hour would all be considered time series. Time series analysis is commonly used in Finance, Forecasting, and Econometrics.&#10;While much of machine learning deals with &quot;cross-sectional data&quot; (data without regard to differences in time), there are also models specifically designed to handle time series."><outline text="Stock market analysis"></outline>
+</outline>
+<outline text="Re-enforcement"><outline text="Self Driving Car"></outline>
+<outline text="Alphago"></outline>
+<outline text="Recommendation Systems"></outline>
+</outline>
+<outline text="Health"></outline>
+</outline>
+<outline text="Jobs"><outline text="9 Mistakes to Avoid When Starting Your Career in Data Science"><outline text="Mistakes while learning data science"><outline text="Spending too much time on theory." _note="The traditional approach to teach machine learning is bottom up."><outline text="Work hard to learn the background in math."></outline>
+<outline text="Work hard to learn the theory of machine learning."></outline>
+<outline text="Work hard to implement algorithms from scratch" _note="4.	??? (insert magic here)"></outline>
+<outline text="Finally start using machine learning (your goal!)."></outline>
+</outline>
+</outline>
+<outline text="Mistakes when applying for a job"><outline text="Having too much technical jargon in a resume."><outline text="Do not simply list the programming languages or libraries you&apos;ve used. Describe how you used them and explain the results." _status="unchecked"></outline>
+<outline text="Less is more. Think about the most important skills to emphasize and give them the space to shine by removing other distractions." _status="unchecked"></outline>
+<outline text="Make a resume master template so you can spin off different versions that are tailored to different roles. This keeps each version clean." _status="unchecked"></outline>
+</outline>
+<outline text="Overestimating the value of academic degrees."><outline text="Supplement coursework with plenty of projects using real-world datasets." _status="unchecked"></outline>
+<outline text="Learn a systematic approach to solving problems with machine learning (covered in our free 7-day crash course)." _status="unchecked"></outline>
+<outline text="Take relevant internships, even if they are part-time." _status="unchecked"></outline>
+<outline text="Reach out to local data scientists on LinkedIn for coffee chats." _status="unchecked"></outline>
+</outline>
+<outline text="Searching too narrowly for jobs."><outline text="Search by required skills (Machine Learning, Data Visualization, SQL, etc.)." _status="unchecked"></outline>
+<outline text="Search by job responsibilities (Predictive Modeling, A/B Testing, Data Analytics, etc.)" _status="unchecked"></outline>
+<outline text="Search by technologies used in the role (Python, R, Scikit-Learn, Keras, etc.)" _status="unchecked"></outline>
+<outline text="Expand your searches by job title (Data Analyst, Quantitative Analyst, Machine Learning Engineer, etc.)." _status="unchecked"></outline>
+</outline>
+</outline>
+<outline text="Mistakes during job interviews"><outline text="Being unprepared to discuss projects during interviews."><outline text="Complete end-to-end projects that allow you to practice every major step (i.e. Data Cleaning, Model Training, etc.)." _status="unchecked"></outline>
+<outline text="Organize your methodology. Data science should be deliberate, not haphazard." _status="unchecked"></outline>
+<outline text="Review and practice describing past projects from any internships, jobs, or classes you&apos;ve taken." _status="unchecked"></outline>
+</outline>
+<outline text="Underestimating the value of domain knowledge."><outline text="If you&apos;re interviewing for a position at a bank, brush up on some basic finance concepts." _status="unchecked"></outline>
+<outline text="If you&apos;re interviewing for a strategy position at a Fortune 500, practice a few case interviews and learn about drivers of profitability." _status="unchecked"></outline>
+<outline text="If you&apos;re interviewing for a startup, learn about its market and try to discern how it will gain a competitive edge." _status="unchecked"></outline>
+<outline text="In short, taking a little bit of extra initiative here can pay big dividends!" _status="unchecked"></outline>
+</outline>
+<outline text="Neglecting communication skills."><outline text="Practice explaining technical concepts to non-technical audiences. For example, try explaining your favorite algorithm to a friend." _status="unchecked"></outline>
+<outline text="Prepare bullet point responses to common interview questions and practice delivering your answers." _status="unchecked"></outline>
+<outline text="Practice analyzing various datasets, extracting key insights, and presenting your findings." _status="unchecked"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Data Management Professional"><outline text="similar to database administrator"><outline text="concerned with managing data and the infrastructure which supports it"></outline>
+</outline>
+<outline text="There is little to no data analysis that takes place in such a role, and the use of languages such as Python and R is likely not necessary."></outline>
+<outline text="Key technologies and skills to focus on:"><outline text="Apache Hadoop &amp; its ecosystem"></outline>
+<outline text="Apache Spark &amp; its ecosystem"></outline>
+<outline text="SQL &amp; relational databases"></outline>
+<outline text="NoSQL databases"></outline>
+</outline>
+</outline>
+<outline text="Data Engineer" _note="Data engineers are becoming more important in the age of big data, and can be thought of as a type of data architect. They are less concerned with statistics, analytics, and modeling as their data scientist/analyst counterparts, and are much more concerned with data architecture, computing and data storage infrastructure, data flow, and so on.&#10;The data used by data scientists and big data applications often come from multiple sources, and must be extracted, moved, transformed, integrated, and stored (e.g., ETL/ELT) in a way that’s optimized for analytics, business intelligence, and modeling.&#10;Data engineers are therefore responsible for data architecture, and for setting up the required infrastructure. As such, they need to be competent programmers with skills very similar to someone in a DevOps role, and with strong data query writing skills as well.&#10;Another key aspect of this role is database design (RDBMS, NoSQL, and NewSQL), data warehousing, and setting up a data lake. This means that they must be very familiar with many of the available database technologies and management systems, including those associated with big data (e.g., Hadoop and HBase).&#10;Lastly, data engineers also typically address non-functional infrastructure requirements such as scalability, reliability, durability, availability, backups, and so on."><outline text="The data infrastructure mentioned in the previous career path? Well, it needs to be designed and implemented, and the data engineer does that."></outline>
+</outline>
+<outline text="Data Analyst" _note="Some of these shared skills include the ability to:&#10;•	Access and query (e.g., SQL) different data sources&#10;•	Process and clean data&#10;•	Summarize data&#10;•	Understand and use some statistics and mathematical techniques&#10;•	Prepare data visualizations and reports&#10;Some of the key differences however, are that data analysts typically are not computer programmers, nor responsible for statistical modeling, machine learning, and many of the other steps outlined in the data science process above.&#10;The tools used are usually different as well. Data analysts often use tools for analysis and business intelligence like Microsoft Excel (visualization, pivot tables, …), Tableau, SAS, SAP, and Qlik.&#10;Analysts sometimes perform data mining and modeling tasks, but tend to use visual platforms such as IBM SPSS Modeler, Rapid Miner, SAS, and KNIME. Data scientists, on the other hand, perform these same tasks usually with tools such as R and Python, combined with relevant libraries for the language(s) being used.&#10;Lastly, data analysts tend to differ significantly in their interactions with top business managers and executives. Data analysts are often given questions and goals from the top down, perform the analysis, and then report their findings.&#10;Data scientists however, tend to generate the questions themselves, driven by knowing which business goals are most important and how the data can be used to achieve certain goals. In addition, data scientists typically employ much more advanced statistical and modeling techniques, data visualizations, and emphasize reporting in a more business-driven storytelling way."><outline text="analysis and presentation of data"></outline>
+<outline text="Key technologies and skills to focus on:"><outline text="SQL &amp; relational databases"></outline>
+<outline text="NoSQL databases"></outline>
+<outline text="Often requires commercial reporting and dashboard package know-how"></outline>
+<outline text="Reporting can often be ad hoc in nature, and mastery of tools for quickly adapting is key"></outline>
+<outline text="Data warehousing"></outline>
+</outline>
+</outline>
+<outline text="Machine Learning Researcher/Practitioner"><outline text="crafting and using the predictive and correlative tools used to leverage data."></outline>
+<outline text="Key technologies and skills to focus on:"><outline text="Statistics"></outline>
+<outline text="Algebra &amp; calculus (intermediate level for practitioners, advanced for researchers)"></outline>
+<outline text="Programming skills: Python, C++, or some other general-purpose language"></outline>
+<outline text="Learning theory (intermediate level for practitioners, advanced for researchers)"></outline>
+<outline text="An understanding of the inner workings of an arsenal of machine learning algorithms (the more algorithms the better, and the deeper the understanding the better!)"></outline>
+</outline>
+</outline>
+<outline text="Sexist Job of 21st Century"><outline text="Data Scientist / Data-oriented Professional" _note="Jack Of All Trades of the data world&#10;&#10;A data scientist is a person who should be able to leverage existing data sources, and create new ones as needed in order to extract meaningful information and actionable insights. These insights can be used to drive business decisions and changes intended to achieve business goals.&#10;This is done through business domain expertise, effective communication and results interpretation, and utilization of any and all relevant statistical techniques, programming languages, software packages and libraries, data infrastructure, and so on."><outline text="4 Pillars"><outline text="Business domain" _note="For example, a data scientist may think that her goal is to create a high performing prediction engine. The business that plans to utilize the prediction engine, on the other hand, may have the goal of increasing revenue, which can be achieved by using this prediction engine.&#10;While this may appear to not be an issue at first glance, in reality the situation described is why the first pillar (business domain expertise) is so critical. Often members of upper management have business-centric educational backgrounds, such as an MBA.&#10;While many executives are exceptionally smart individuals, they may not be well versed on all the tools, techniques, and algorithms available to a data scientist (e.g., statistical analysis, machine learning, artificial intelligence, and so on). Given this, they may not be able to tell a data scientist what they would like as a final deliverable, or suggest the data sources, features (variables), and path to get there.&#10;Even if an executive is able to determine that a specific recommendation engine would help increase revenue, they may not realize that there are probably many other ways that the company’s data can be used to increase revenue as well.&#10;It can therefore not be emphasized enough that the ideal data scientist has a fairly comprehensive understanding about how businesses work in general, and how a company’s data can be used to achieve top-level business goals.&#10;With significant business domain expertise, a data scientist should be able to regularly discover and propose new data initiatives to help the business achieve its goals and maximize their KPIs."></outline>
+<outline text="Statistics and probability"></outline>
+<outline text="Computer science and software programming"></outline>
+<outline text="Written and verbal communication"></outline>
+</outline>
+<outline text="Data Science Goals and Deliverables" _note="Here is a short list of common data science deliverables:&#10;•	Prediction (predict a value based on inputs)&#10;•	Classification (e.g., spam or not spam)&#10;•	Recommendations (e.g., Amazon and Netflix recommendations)&#10;•	Pattern detection and grouping (e.g., classification without known classes)&#10;•	Anomaly detection (e.g., fraud detection)&#10;•	Recognition (image, text, audio, video, facial, …)&#10;•	Actionable insights (via dashboards, reports, visualizations, …)&#10;•	Automated processes and decision-making (e.g., credit card approval)&#10;•	Scoring and ranking (e.g., FICO score)&#10;•	Segmentation (e.g., demographic-based marketing)&#10;•	Optimization (e.g., risk management)&#10;•	Forecasts (e.g., sales and revenue)"></outline>
+<outline text="Data Science Process"><outline text="Science in Data Science"></outline>
+<outline text=""></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Artificial Intelligence"><outline text="Agent"><outline text="Terms"><outline text="Performance Measure of Agent" _note="It is the criteria, which determines how successful an agent is."></outline>
+<outline text="Behavior of Agent" _note="It is the action that agent performs after any given sequence of percepts."></outline>
+<outline text="Percept" _note="It is agent’s perceptual inputs at a given instance."></outline>
+<outline text="Percept Sequence" _note="It is the history of all that an agent has perceived till date."></outline>
+<outline text="Agent Function" _note="It is a map from the precept sequence to an action."></outline>
+</outline>
+<outline text="Types"><outline text="Simple Reflex Agents" _note="They choose actions only based on the current percept.&#10;They are rational only if a correct decision is made only on the basis of current precept.&#10;Their environment is completely observable."><outline text="Condition-Action Rule"><outline text="It is a rule that maps a state (condition) to an action."></outline>
+</outline>
+</outline>
+<outline text="Model Based Reflex Agents" _note="They use a model of the world to choose their actions. They maintain an internal state.&#10;Model − The knowledge about “how the things happen in the world”.&#10;Internal State − It is a representation of unobserved aspects of current state depending on percept history.&#10;Updating the state requires the information about −"><outline text="How the world evolves."></outline>
+<outline text="How the agent’s actions affect the world."></outline>
+</outline>
+<outline text="Goal Based Agents" _note="They choose their actions in order to achieve goals. Goal-based approach is more flexible than reflex agent since the knowledge supporting a decision is explicitly modeled, thereby allowing for modifications.&#10;Goal − It is the description of desirable situations."></outline>
+<outline text="Utility Based Agents" _note="They choose actions based on a preference (utility) for each state. Goals are inadequate when −"><outline text="There are conflicting goals, out of which only few can be achieved."></outline>
+<outline text="Goals have some uncertainty of being achieved and you need to weigh likelihood of success against the importance of a goal."></outline>
+</outline>
+<outline text="Learning Agent"></outline>
+</outline>
+</outline>
+<outline text="Goals"><outline text="To Create Expert Systems"></outline>
+<outline text="To Implement Human Intelligence in Machines"></outline>
+</outline>
+<outline text="Programming Without and With AI"><outline text="Programming Without AI"><outline text="A computer program without AI can answer the specific questions it is meant to solve."></outline>
+<outline text="Modification in the program leads to change in its structure."></outline>
+<outline text="Modification is not quick and easy. It may lead to affecting the program adversely."></outline>
+</outline>
+<outline text="Programming With AI"><outline text="A computer program with AI can answer the generic questions it is meant to solve."></outline>
+<outline text="AI programs can absorb new modifications by putting highly independent pieces of information together. Hence you can modify even a minute piece of information of program without affecting its structure."></outline>
+<outline text="Quick and Easy program modification."></outline>
+</outline>
+</outline>
+<outline text="Rationality"><outline text="being reasonable, sensible, and having good sense of judgment."></outline>
+<outline text="Rationality is concerned with expected actions and results depending upon what the agent has perceived. Performing actions with the aim of obtaining useful information is an important part of rationality."></outline>
+<outline text="Ideal Rational Agent"><outline text="capable of doing expected actions to maximize its performance measure, on the basis of"><outline text="Its percept sequence"></outline>
+<outline text="Its built-in knowledge base"></outline>
+</outline>
+<outline text="A rational agent always performs right action, where the right action means the action that causes the agent to be most successful in the given percept sequence."></outline>
+<outline text="The problem the agent solves is characterized by Performance Measure, Environment, Actuators, and Sensors (PEAS)."></outline>
+</outline>
+</outline>
+<outline text="Intelligence"></outline>
+<outline text="Applications of AI"><outline text="Gaming" _note="AI plays crucial role in strategic games such as chess, poker, tic-tac-toe, etc., where machine can think of large number of possible positions based on heuristic knowledge."></outline>
+<outline text="Natural Language Processing" _note="It is possible to interact with the computer that understands natural language spoken by humans."></outline>
+<outline text="Expert Systems" _note="There are some applications which integrate machine, software, and special information to impart reasoning and advising. They provide explanation and advice to the users."></outline>
+<outline text="Vision Systems" _note="These systems understand, interpret, and comprehend visual input on the computer. For example,&#10;A spying aeroplane takes photographs, which are used to figure out spatial information or map of the areas.&#10;Doctors use clinical expert system to diagnose the patient.&#10;Police use computer software that can recognize the face of criminal with the stored portrait made by forensic artist."></outline>
+<outline text="Speech Recognition" _note="Some intelligent systems are capable of hearing and comprehending the language in terms of sentences and their meanings while a human talks to it. It can handle different accents, slang words, noise in the background, change in human’s noise due to cold, etc."></outline>
+<outline text="Handwriting Recognition" _note="The handwriting recognition software reads the text written on paper by a pen or on screen by a stylus. It can recognize the shapes of the letters and convert it into editable text."></outline>
+<outline text="Intelligent Robots" _note="Robots are able to perform the tasks given by a human. They have sensors to detect physical data from the real world such as light, heat, temperature, movement, sound, bump, and pressure. They have efficient processors, multiple sensors and huge memory, to exhibit intelligence. In addition, they are capable of learning from their mistakes and they can adapt to the new environment."></outline>
+</outline>
+<outline text="Environment"><outline text="artificial environment"><outline text="confined to keyboard input, database, computer file systems and character output on a screen."></outline>
+<outline text="Example: Turing Test environment"><outline text="The success of an intelligent behavior of a system can be measured with Turing Test."></outline>
+<outline text="Two persons and a machine to be evaluated participate in the test. Out of the two persons, one plays the role of the tester. Each of them sits in different rooms. The tester is unaware of who is machine and who is a human. He interrogates the questions by typing and sending them to both intelligences, to which he receives typed responses."></outline>
+<outline text="This test aims at fooling the tester. If the tester fails to determine machine’s response from the human response, then the machine is said to be intelligent."></outline>
+</outline>
+</outline>
+<outline text="Properties of Environment"><outline text="Discrete / Continuous" _note="If there are a limited number of distinct, clearly defined, states of the environment, the environment is discrete (For example, chess); otherwise it is continuous (For example, driving)."></outline>
+<outline text="Observable / Partially Observable" _note="If it is possible to determine the complete state of the environment at each time point from the percepts it is observable; otherwise it is only partially observable."></outline>
+<outline text="Static / Dynamic" _note="If the environment does not change while an agent is acting, then it is static; otherwise it is dynamic."></outline>
+<outline text="Single agent / Multiple agents" _note="The environment may contain other agents which may be of the same or different kind as that of the agent."></outline>
+<outline text="Accessible / Inaccessible" _note="If the agent’s sensory apparatus can have access to the complete state of the environment, then the environment is accessible to that agent."></outline>
+<outline text="Deterministic / Non-deterministic" _note="If the next state of the environment is completely determined by the current state and the actions of the agent, then the environment is deterministic; otherwise it is non-deterministic."></outline>
+<outline text="Episodic / Non-episodic" _note="In an episodic environment, each episode consists of the agent perceiving and then acting. The quality of its action depends just on the episode itself. Subsequent episodes do not depend on the actions in the previous episodes. Episodic environments are much simpler because the agent does not need to think ahead."></outline>
+</outline>
+</outline>
+<outline text="Components"><outline text="Knowledge"></outline>
+<outline text="Reasoning"></outline>
+<outline text="Language Understanding"></outline>
+<outline text="Learning"></outline>
+</outline>
+</outline>
+<outline text="The 3 Elements of Great Machine Learning"><outline text="A skilled chef (human guidance)" _note="how to road-map your project for guaranteed success."></outline>
+<outline text="Fresh ingredients (clean, relevant data)" _note="Garbage In = Garbage Out, no matter which algorithms you use.&#10;Professional data scientists spend most their time understanding the data, cleaning it, and engineering new features.&#10;While that sounds open-ended, you&apos;ll get our proven frameworks that you can always rely on as starting points."></outline>
+<outline text="Don&apos;t overcook it (avoid overfitting)" _note="One of the most dangerous pitfalls in machine learning is overfitting. An overfit model has &quot;memorized&quot; the noise in the training set, instead of learning the true underlying patterns.&#10;•	An overfit model within a hedge fund can cost millions of dollars in losses.&#10;•	An overfit model within a hospital can costs thousands of lives.&#10;•	For most applications, the stakes won&apos;t be quite that high, but overfitting is still the single largest mistake you must avoid.&#10;We&apos;ll teach you strategies for preventing overfitting by (A) choosing the right algorithms and (B) tuning them correctly."></outline>
+<outline text="What Kaggle has learned from almost a million data scientists"><outline text="total 4 million models are submitted to Kaggles"></outline>
+<outline text="2 approches to winning a competition"><outline text="structures data problems"><outline text="excel"></outline>
+<outline text="csv"></outline>
+<outline text="sql"></outline>
+<outline text="3 steps"><outline text=""><outline text="Explore the data in every way you can"></outline>
+<outline text="all visualization to get sense of your data"></outline>
+<outline text="how it is collected"></outline>
+<outline text="look at exploratory analysis"></outline>
+</outline>
+<outline text=""><outline text="Create and select features"></outline>
+<outline text="standard"></outline>
+<outline text="unusual"></outline>
+<outline text="clever hypothesis that explored the data"></outline>
+</outline>
+<outline text=""><outline text="Use classifies: Parameter tuning and ensembling"></outline>
+<outline text="xgboost"></outline>
+</outline>
+</outline>
+</outline>
+</outline>
+</outline>
+</outline>
+</outline>
+<outline text="Link Analysis"><outline text="Hub"></outline>
+<outline text="Authority"></outline>
+<outline text="Dead End"><outline text="page which does not have any link going out"></outline>
+<outline text="cause the Page Rank of some or all the pages to go to 0 in the iterative computation, including pages that are not dead ends."></outline>
+<outline text="how dead ends are handled in Page Rank"><outline text="eliminated before undertaking a Page Rank calculation by recursively dropping nodes with no arcs out"><outline text="dropping one node can cause another which linked only to it to become a dead end, so the process must be recursive"></outline>
+<outline text="eventually, we wind up with a strongly-connected component (SCC) none of whose nodes are dead ends"></outline>
+<outline text="remove parts of the out-components, tendrils, and tubes but leave the SCC and the in-component, as well as parts of any small isolated components."></outline>
+</outline>
+<outline text="random surfers are assumed to move about the Web" _note="https://techblogmu.blogspot.in/2018/03/explain-how-dead-ends-are-handled-in_22.html"><outline text="This method which we refer to as &apos;taxation&apos; also solves the problem of spider traps."></outline>
+<outline text="modify the calculation of Page Rank by allowing each random suffer a small probability of teleporting to a random page, rather than following an out-link from their current page"></outline>
+</outline>
+</outline>
+</outline>
+<outline text=""></outline>
+<outline text="Spider Traps"><outline text="no dead end and no edge going outside"></outline>
+<outline text="can be a group of one or more"></outline>
+<outline text="often overlooked but could destroy search engine ranking"></outline>
+</outline>
+</outline>
+<outline text="Social Network Analysis"><outline text="Betweenness Centrality"></outline>
+</outline>
+<outline text=""></outline>
+<outline text="New Work"><outline text="Correlation"><outline text="Add different methods of correlation"></outline>
+</outline>
+<outline text="Data Science 2"><outline text="Confusion Matrix"><outline text="allows visualization of the performance of an algorithm"></outline>
+<outline text="table layout"><outline text="row"><outline text="represents the instances in a predicted class"></outline>
+</outline>
+<outline text="columns"><outline text="column represents the instances in an actual class"></outline>
+</outline>
+</outline>
+<outline text="Table of confusion"></outline>
+</outline>
+</outline>
+<outline text=""><outline text=""></outline>
+<outline text="Bayesian" _note="When referring to probability, there are 2 major schools of thought: classical, or frequentist, probability interpretation views probabilities in terms of the frequencies of random events. In somewhat of a contrast, the Bayesian view of probability aims to quantify uncertainty, and updates a given probability as additional evidence is available. If these probabilities are extended to truth values, and are assigned to hypotheses, we then have &quot;learning&quot; to varying degrees of certainty."><outline text=""></outline>
+</outline>
+</outline>
+<outline text="Data Wrangling"></outline>
+<outline text="Where does this belong"><outline text="TFID"></outline>
+</outline>
+<outline text="Distance Measures"><outline text="Hamming Distance"><outline text="between two items of equal length is the number of positions at which the corresponding character/bits are different"></outline>
+<outline text="&quot;geeksforgeeks&quot; and &quot;geeksandgeeks&quot;"></outline>
+</outline>
+</outline>
+</outline>
+</body>
+</opml>
